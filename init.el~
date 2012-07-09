@@ -1,0 +1,134 @@
+;PATHS
+(let ((default-directory "~/.emacs.d/"))
+      (normal-top-level-add-subdirs-to-load-path))
+; no startup msg  
+(setq inhibit-startup-message t)  
+;mac os x option key as meta
+(set-keyboard-coding-system nil)
+;delete backspace
+(delete-selection-mode t)
+;shift select up
+(if (equal "xterm-256color" (tty-type))
+      (define-key input-decode-map "\e[1;2A" [S-up]))
+;mouse support on cli
+(xterm-mouse-mode)
+;copy text from emacs to external app
+(require 'pbcopy)
+(turn-on-pbcopy)
+;Comment and uncomment code
+(global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
+(if (window-system)
+(progn
+(global-visual-line-mode)))
+;THEME 
+(require 'color-theme)
+(color-theme-initialize)
+(color-theme-almost-monokai)
+;transparency
+(setq transparency-level 80)
+(set-frame-parameter nil 'alpha transparency-level)
+(add-hook 'after-make-frame-functions (lambda (selected-frame) (set-frame-parameter selected-frame 'alpha transparency-level)))
+;AUTOCOMPLETE MODE
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/modes/autocomplete/dict")
+(setq-default ac-sources (add-to-list 'ac-sources 'ac-source-dictionary))
+(global-auto-complete-mode t)
+(setq ac-ignore-case nil)
+;matching braces
+(show-paren-mode 1)
+;line numbers
+(require 'linum)
+(global-linum-mode 1)
+(setq linum-format " %d ")
+(require 'key-bindings)
+;lusty mode
+(require 'lusty-explorer)
+(add-to-list 'load-path
+              "~/.emacs.d/modes/yasnippet")
+(require 'yasnippet) ;; not yasnippet-bundle
+(yas/global-mode 1)
+(yas/load-directory "~/.emacs.d/modes/yasnippet/snippets/")
+(autoload 'css-mode "css-mode" "Mode for editing CSS files" t)
+(setq auto-mode-alist (append '(("\\.css$" . css-mode)) auto-mode-alist))
+(require 'autopair)
+(autopair-global-mode) ;; enable autopair in all buffers_
+;;JS-MODE configurations
+(add-hook 'javascript-mode-hook
+          (lambda ()
+            ;; Scan the file for nested code blocks
+            (imenu-add-menubar-index)
+            ;; Activate the folding mode
+            (hs-minor-mode t)))
+;;HTML-MODE configurations
+(add-hook 'html-mode-hook
+ (lambda ()
+ (global-set-key (kbd "s-b") 'sgml-skip-tag-backward)
+ (global-set-key (kbd "s-e") 'sgml-skip-tag-forward)
+ (global-set-key (kbd "s-d") 'sgml-delete-tag)
+ ))
+;;startup message
+(defun startup-echo-area-message ()
+    (concat
+     (propertize 
+       "welcome back :)"
+       'face (list :family "Consolas" :height 130))
+   ))
+;dirtree
+(require 'dirtree)
+(global-set-key (kbd "C-n") 'nav-toggle)
+;disable menubar/scrollbar/tool-bar
+(custom-set-variables
+ '(blink-cursor-mode nil)
+ '(menu-bar-mode nil)
+ '(scroll-bar-mode nil)
+ '(show-paren-mode t)
+ '(text-mode-hook (quote (text-mode-hook-identify)))
+ '(tool-bar-mode nil))
+(custom-set-faces
+ )
+;face customizations
+(if (window-system)
+(progn
+(custom-set-faces
+ `(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :foundry "apple" :family "Consolas")))))
+  (set-frame-width (selected-frame) 130)
+  (set-frame-height (selected-frame) 40)))
+;iswitchb
+(iswitchb-mode 1)
+(defun iswitchb-local-keys ()
+  (mapc (lambda (K) 
+	(let* ((key (car K)) (fun (cdr K)))
+	  (define-key iswitchb-mode-map (edmacro-parse-keys key) fun)))
+      '(("<right>" . iswitchb-next-match)
+	("<left>"  . iswitchb-prev-match)
+	("<up>"    . ignore             )
+	("<down>"  . ignore             ))))
+(add-hook 'iswitchb-define-mode-map-hook 'iswitchb-local-keys)
+;file location on statusbar
+(setq frame-title-format
+  '(:eval
+    (if buffer-file-name
+        (replace-regexp-in-string
+         "\\\\" "/"
+         (replace-regexp-in-string
+          (regexp-quote (getenv "HOME")) "~"
+          (convert-standard-filename buffer-file-name)))
+      (buffer-name))))
+(put 'upcase-region 'disabled nil)
+;; Emacs server
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+;buffer file name
+(defun show-file-name ()
+  "Show the full path file name in the minibuffer."
+  (interactive)
+  (message (buffer-file-name))
+  (kill-new (file-truename buffer-file-name))
+)
+(global-set-key "\C-cz" 'show-file-name)
+;backup files folder
+(setq backup-directory-alist
+          `((".*" . ,temporary-file-directory)))
+    (setq auto-save-file-name-transforms
+          `((".*" ,temporary-file-directory t)))

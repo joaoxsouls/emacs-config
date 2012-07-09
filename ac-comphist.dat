@@ -1,0 +1,20 @@
+((("customizations" .
+   [0 0 0 0 1 1 0 1 0 0 0 0 0 0])
+  ("require" .
+   [0 0 0 0 0 0 1])
+  ("lusty-file-explorer" .
+   [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
+  ("undo-only" .
+   [0 0 0 0 1 0 0 0 0])
+  ("back" .
+   [1 0 0 0])
+  (":background" .
+   [1 0 0 0 0 0 0 0 0 0 0])
+  ("backward-word" .
+   [0 0 0 0 0 1 0 0 0 0 0 0 0])
+  ("backward-paragraph" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("progn" .
+   [2 0 0 0 0])
+  ("file" .
+   [1 0 0 0])))
