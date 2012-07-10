@@ -34,31 +34,15 @@
 ;face customizations
 (if (window-system)
 (progn
-
-;word wrapping
 (global-visual-line-mode)
-(custom-set-faces
-
-;file location on statusbar
-(setq frame-title-format
-  '(:eval
-    (if buffer-file-name
-        (replace-regexp-in-string
-         "\\\\" "/"
-         (replace-regexp-in-string
-          (regexp-quote (getenv "HOME")) "~"
-          (convert-standard-filename buffer-file-name)))
-      (buffer-name))))
 (put 'upcase-region 'disabled nil)
 (global-set-key "\C-cz" 'show-file-name)
-
-;transparency
 (setq transparency-level 80)
+;transparency
 (set-frame-parameter nil 'alpha transparency-level)
 (add-hook 'after-make-frame-functions (lambda (selected-frame) (set-frame-parameter selected-frame 'alpha transparency-level)))
-
-;file location on statusbar
 (setq frame-title-format
+;file location on statusbar
   '(:eval
     (if buffer-file-name
         (replace-regexp-in-string
@@ -69,10 +53,10 @@
       (buffer-name))))
 (put 'upcase-region 'disabled nil)
 (global-set-key "\C-cz" 'show-file-name)
-
 ;font and window customizations
+(custom-set-faces
  `(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :foundry "apple" :family "Consolas")))))
-  (set-frame-width (selected-frame) 130)
-  (set-frame-height (selected-frame) 40)))
+(set-frame-width (selected-frame) 130)
+(set-frame-height (selected-frame) 40)))
 
 (provide 'customizations)

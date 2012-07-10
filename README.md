@@ -1,4 +1,7 @@
-emacs-config
-============
+*********************
+emacs-config settings
+*********************
 
-emacs config files and customizations
+followed `magnars <https://github.com/magnars/.emacs.d/>`_ configs and made my own
+feel free to use them
+
