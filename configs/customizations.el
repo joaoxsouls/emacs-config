@@ -21,6 +21,7 @@
 (custom-set-variables
  '(blink-cursor-mode nil)
  '(menu-bar-mode nil)
+ '(indent-tabs-mode nil)
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(text-mode-hook (quote (text-mode-hook-identify)))

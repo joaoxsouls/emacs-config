@@ -7,6 +7,7 @@
             ;; Activate the folding mode
             (hs-minor-mode t)))
 
+
 ;html-mode hooks
 (add-hook 'html-mode-hook
  (lambda ()

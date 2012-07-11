@@ -47,4 +47,6 @@
 
 (global-set-key (kbd "C-n") 'dirtree-show)
 
+(global-set-key (kbd "C-x b")   'lusty-buffer-explorer)
+
 (provide 'key-bindings)

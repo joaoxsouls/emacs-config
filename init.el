@@ -18,6 +18,9 @@
 (color-theme-initialize)
 (color-theme-almost-monokai)
 
+;uniquify
+(require 'uniquify)
+
 ;autocomplete mode
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/modes/autocomplete/dict")
@@ -34,13 +37,10 @@
 (require 'lusty-explorer)
 
 ;yasnippet
-(add-to-list 'load-path
-              "~/.emacs.d/modes/yasnippet")
-(require 'yasnippet) ;; not yasnippet-bundle
-(yas/global-mode 1)
-(yas/load-directory "~/.emacs.d/modes/yasnippet/snippets/")
-(autoload 'css-mode "css-mode" "Mode for editing CSS files" t)
-(setq auto-mode-alist (append '(("\\.css$" . css-mode)) auto-mode-alist))
+(require 'yasnippet)
+(setq yas/root-directory "~/.emacs.d/modes/yasnippet/snippets/")
+(yas/load-directory yas/root-directory)
+(yas/initialize)
 
 ;autopair mode
 (require 'autopair)
