@@ -20,6 +20,10 @@
 
 ;uniquify
 (require 'uniquify)
+(setq uniquify-buffer-name-style 'reverse)
+(setq uniquify-separator "/")
+(setq uniquify-after-kill-buffer-p t) ; rename after killing uniquified
+(setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
 
 ;autocomplete mode
 (require 'auto-complete-config)
@@ -61,3 +65,4 @@
 ;mouse support on cli
 (xterm-mouse-mode)
 
+(put 'narrow-to-region 'disabled nil)

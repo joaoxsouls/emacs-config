@@ -17,6 +17,14 @@
 (if (equal "xterm-256color" (tty-type))
       (define-key input-decode-map "\e[1;2A" [S-up]))
 
+;delete selected text with any key
+
+(delete-selection-mode t)
+
+;desktop-mode default folder
+(setq desktop-path '("~/Work/emacs-sessions/"))
+(setq desktop-dirname "~/Work/emacs-sessions/")
+
 ;disable menubar/scrollbar/tool-bar
 (custom-set-variables
  '(blink-cursor-mode nil)

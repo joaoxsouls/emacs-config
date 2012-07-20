@@ -16,16 +16,12 @@
  (global-set-key (kbd "s-d") 'sgml-delete-tag)
  ))
 
-;iswitch hooks
-(defun iswitchb-local-keys ()
-  (mapc (lambda (K) 
-	(let* ((key (car K)) (fun (cdr K)))
-	  (define-key iswitchb-mode-map (edmacro-parse-keys key) fun)))
-      '(("<right>" . iswitchb-next-match)
-	("<left>"  . iswitchb-prev-match)
-	("<up>"    . ignore             )
-	("<down>"  . ignore             ))))
-(add-hook 'iswitchb-define-mode-map-hook 'iswitchb-local-keys)
+;lusty hooks
+
+(add-hook 'lusty-setup-hook 'my-lusty-hook)
+(defun my-lusty-hook ()
+(define-key lusty-mode-map "C-<right>" 'lusty-highlight-next)
+(define-key lusty-mode-map "C-<left>" 'lusty-highlight-previous))
 
 
 (provide 'mode-hooks)
