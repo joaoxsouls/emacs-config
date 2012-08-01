@@ -13,6 +13,11 @@
 ;mac os x option key as meta
 (set-keyboard-coding-system nil)
 
+;background color
+(setq default-frame-alist
+      '((background-color . "#000000")
+      (foreground-color . "#969596")))
+
 ;shift select up
 (if (equal "xterm-256color" (tty-type))
       (define-key input-decode-map "\e[1;2A" [S-up]))

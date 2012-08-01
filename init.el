@@ -13,6 +13,11 @@
 (require 'pbcopy)
 (turn-on-pbcopy)
 
+;js2mode fork
+
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
 ;theme
 (require 'color-theme)
 (color-theme-initialize)
