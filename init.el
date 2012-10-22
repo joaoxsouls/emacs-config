@@ -47,9 +47,10 @@
 
 ;yasnippet
 (require 'yasnippet)
-(setq yas/root-directory "~/.emacs.d/modes/yasnippet/snippets/")
-(yas/load-directory yas/root-directory)
-(yas/initialize)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/modes/yasnippet/snippets/"
+        ))
+(yas-global-mode 1)
 
 ;autopair mode
 (require 'autopair)
@@ -71,3 +72,8 @@
 (xterm-mouse-mode)
 
 (put 'narrow-to-region 'disabled nil)
+
+;disable backup
+(setq backup-inhibited t)
+;disable auto save
+(setq auto-save-default nil)
