@@ -23,12 +23,14 @@
       (define-key input-decode-map "\e[1;2A" [S-up]))
 
 ;delete selected text with any key
-
 (delete-selection-mode t)
 
+;freaking whitespaces trail
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;desktop-mode default folder
-(setq desktop-path '("~/Work/emacs-sessions/"))
-(setq desktop-dirname "~/Work/emacs-sessions/")
+(setq desktop-path '("~/dev/emacs-sessions/"))
+(setq desktop-dirname "~/dev/emacs-sessions/")
 
 ;disable menubar/scrollbar/tool-bar
 (custom-set-variables
