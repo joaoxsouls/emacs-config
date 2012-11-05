@@ -22,7 +22,9 @@
 
 (global-set-key (kbd "C-z") 'undo-only)
 
-(global-set-key (kbd "C-u") 'lusty-file-explorer)
+(global-set-key (kbd "C-x C-f") 'lusty-file-explorer)
+
+(global-set-key (kbd "C-u") 'simp-project-find-file)
 
 (global-set-key (kbd "C-c <right>") 'next-multiframe-window)
 

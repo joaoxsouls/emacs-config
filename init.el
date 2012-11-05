@@ -13,10 +13,16 @@
 (require 'pbcopy)
 (turn-on-pbcopy)
 
-;js2mode fork
 
+;js2mode fork
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+;simp
+(require 'simp)
+(simp-project-define
+ '(:has (.git)
+   :ignore (.git)))
 
 ;theme
 (require 'color-theme)
@@ -65,7 +71,7 @@
 ;matching braces
 (show-paren-mode 1)
 
-;delete selected text with any key 
+;delete selected text with any key
 (delete-selection-mode t)
 
 ;mouse support on cli
