@@ -27,7 +27,7 @@
 ;theme
 (require 'color-theme)
 (color-theme-initialize)
-(color-theme-almost-monokai)
+(color-theme-orico-black)
 
 ;uniquify
 (require 'uniquify)
@@ -83,3 +83,8 @@
 (setq backup-inhibited t)
 ;disable auto save
 (setq auto-save-default nil)
+
+;recent files
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)

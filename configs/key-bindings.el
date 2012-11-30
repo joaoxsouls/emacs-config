@@ -55,4 +55,12 @@
 
 (global-set-key (kbd "C-c l") 'desktop-change-dir)
 
+(global-set-key (kbd "C-c C-s") 'split-window-horizontally)
+
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
+
+(global-set-key (kbd "C-M-<down>") 'scroll-up-command)
+
+(global-set-key (kbd "C-M-<up>") 'scroll-down-command)
+
 (provide 'key-bindings)
