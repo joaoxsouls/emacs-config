@@ -1,0 +1,5 @@
+# contributor: Joaoxsouls <joaoxsouls@gmail.com>
+# name: <a>...</a>
+# key: a
+# --
+<a href="$1">$0</a>

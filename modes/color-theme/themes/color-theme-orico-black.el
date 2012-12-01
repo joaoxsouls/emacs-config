@@ -44,7 +44,7 @@
      (font-lock-type-face ((t (:foreground "#8ae234" :bold t))))
      (font-lock-variable-name-face ((t (:foreground "#00CC00"))))
      (font-lock-warning-face ((t (:bold t :foreground "#f57900"))))
-     (font-lock-function-name-face ((t (:foreground "#bc1026" :italic t))))
+     (font-lock-function-name-face ((t (:foreground "#3dd035" :italic t))))
 
      ;; values that are specific to Python ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      (py-decorators-face ((t (:foreground "#ad7fa8" :bold t))))

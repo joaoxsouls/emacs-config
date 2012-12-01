@@ -1,0 +1,14 @@
+# name: Doctype HTML 4.01 Strict
+# key: doctype
+# --
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>$1</title>
+$2
+</head>
+<body>
+$0
+</body>
+</html>
