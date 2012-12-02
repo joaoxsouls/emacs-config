@@ -24,10 +24,9 @@
  '(:has (.git)
    :ignore (.git)))
 
-;theme
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-orico-black)
+;;theme
+(add-to-list 'custom-theme-load-path "~/.emacs.d/modes/themes")
+(load-theme 'most-monokai-cli t)
 
 ;uniquify
 (require 'uniquify)
