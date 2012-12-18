@@ -63,4 +63,6 @@
 
 (global-set-key (kbd "C-M-<up>") 'scroll-down-command)
 
+(global-set-key (kbd "C-c C-r")   'revert-buffer)
+
 (provide 'key-bindings)

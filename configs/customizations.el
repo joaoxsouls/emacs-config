@@ -2,21 +2,19 @@
 ;-------------------
 
 ;startup msg
-(setq inhibit-startup-message t)  
+(setq inhibit-startup-message t)
 (defun startup-echo-area-message ()
     (concat
-     (propertize 
+     (propertize
        "welcome back :)"
        'face (list :family "Consolas" :height 130))
    ))
 
+;;theme
+(load-theme 'most-monokai-cli t)
+
 ;mac os x option key as meta
 (set-keyboard-coding-system nil)
-
-;background color
-(setq default-frame-alist
-      '((background-color . "#000000")
-      (foreground-color . "#969596")))
 
 ;shift select up
 (if (equal "xterm-256color" (tty-type))
@@ -28,9 +26,8 @@
 ;freaking whitespaces trail
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;desktop-mode default folder
-(setq desktop-path '("~/dev/emacs-sessions/"))
-(setq desktop-dirname "~/dev/emacs-sessions/")
+; revert buffer w/o asking
+(setq revert-without-query (quote (".*")))
 
 ;disable menubar/scrollbar/tool-bar
 (custom-set-variables
@@ -53,7 +50,7 @@
 (global-visual-line-mode)
 (put 'upcase-region 'disabled nil)
 (global-set-key "\C-cz" 'show-file-name)
-(setq transparency-level 80)
+(setq transparency-level 90)
 ;transparency
 (set-frame-parameter nil 'alpha transparency-level)
 (add-hook 'after-make-frame-functions (lambda (selected-frame) (set-frame-parameter selected-frame 'alpha transparency-level)))
@@ -73,6 +70,7 @@
 (custom-set-faces
  `(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :foundry "apple" :family "Consolas")))))
 (set-frame-width (selected-frame) 130)
-(set-frame-height (selected-frame) 40)))
+(set-frame-height (selected-frame) 40)
+(load-theme 'most-monokai-gui t)))
 
 (provide 'customizations)

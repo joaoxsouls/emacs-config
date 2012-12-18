@@ -1,7 +1,7 @@
 ;--PATHS
 (let ((default-directory "~/.emacs.d/"))
-      (normal-top-level-add-subdirs-to-load-path))
-
+  (normal-top-level-add-subdirs-to-load-path))
+(add-to-list 'custom-theme-load-path "~/.emacs.d/modes/themes")
 ;--REQUIRES
 
 ;config files
@@ -13,7 +13,6 @@
 (require 'pbcopy)
 (turn-on-pbcopy)
 
-
 ;js2mode fork
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
@@ -23,10 +22,6 @@
 (simp-project-define
  '(:has (.git)
    :ignore (.git)))
-
-;;theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/modes/themes")
-(load-theme 'most-monokai-cli t)
 
 ;uniquify
 (require 'uniquify)
