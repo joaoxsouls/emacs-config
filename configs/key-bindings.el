@@ -57,12 +57,72 @@
 
 (global-set-key (kbd "C-c C-s") 'split-window-horizontally)
 
-(global-set-key (kbd "C-x C-r") 'recentf-open-files)
+(global-set-key (kbd "C-c C-r") 'recentf-open-files)
 
 (global-set-key (kbd "C-M-<down>") 'scroll-up-command)
 
 (global-set-key (kbd "C-M-<up>") 'scroll-down-command)
 
-(global-set-key (kbd "C-c C-r")   'revert-buffer)
+
+;new line after and before the current
+(defun open-line-below ()
+  (interactive)
+  (end-of-line)
+  (newline)
+  (indent-for-tab-command))
+
+(defun open-line-above ()
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))
+
+(global-set-key (kbd "<C-return>") 'open-line-below)
+(global-set-key (kbd "<C-c return>") 'open-line-above)
+
+;rename files
+(defun rename-current-buffer-file ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " filename)))
+        (if (get-buffer new-name)
+            (error "A buffer named '%s' already exists!" new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message "File '%s' successfully renamed to '%s'"
+                   name (file-name-nondirectory new-name)))))))
+
+(global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
+
+;delete files
+(defun delete-current-buffer-file ()
+  "Removes file connected to current buffer and kills buffer."
+  (interactive)
+  (let ((filename (buffer-file-name))
+        (buffer (current-buffer))
+        (name (buffer-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (ido-kill-buffer)
+      (when (yes-or-no-p "Are you sure you want to remove this file? ")
+        (delete-file filename)
+        (kill-buffer buffer)
+        (message "File '%s' successfully removed" filename)))))
+
+(global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
+
+;clean-up and ident
+(defun cleanup-buffer ()
+  (interactive)
+  (cleanup-buffer-safe)
+  (indent-region (point-min) (point-max)))
+
+(global-set-key (kbd "C-c n") 'cleanup-buffer)
 
 (provide 'key-bindings)

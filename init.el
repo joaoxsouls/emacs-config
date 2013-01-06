@@ -17,11 +17,23 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
+;yasnippet
+(require 'yasnippet)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/modes/yasnippet/snippets/"
+        ))
+(yas-global-mode 1)
+
+
+(require 'django-html-mode)
+
 ;simp
 (require 'simp)
 (simp-project-define
  '(:has (.git)
    :ignore (.git)))
+(require 'ido-better-flex)
+(ido-better-flex/enable)
 
 ;uniquify
 (require 'uniquify)
@@ -31,11 +43,10 @@
 (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
 
 ;autocomplete mode
-(require 'auto-complete-config)
+(require 'auto-complete)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/modes/autocomplete/dict")
-(setq-default ac-sources (add-to-list 'ac-sources 'ac-source-dictionary))
-(global-auto-complete-mode t)
-(setq ac-ignore-case nil)
+(require 'auto-complete-config)
+(ac-config-default)
 
 ;line numbers
 (require 'linum)
@@ -44,13 +55,6 @@
 
 ;lusty mode
 (require 'lusty-explorer)
-
-;yasnippet
-(require 'yasnippet)
-(setq yas-snippet-dirs
-      '("~/.emacs.d/modes/yasnippet/snippets/"
-        ))
-(yas-global-mode 1)
 
 ;autopair mode
 (require 'autopair)

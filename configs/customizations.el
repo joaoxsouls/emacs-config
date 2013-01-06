@@ -3,12 +3,6 @@
 
 ;startup msg
 (setq inhibit-startup-message t)
-(defun startup-echo-area-message ()
-    (concat
-     (propertize
-       "welcome back :)"
-       'face (list :family "Consolas" :height 130))
-   ))
 
 ;;theme
 (load-theme 'most-monokai-cli t)
@@ -23,11 +17,36 @@
 ;delete selected text with any key
 (delete-selection-mode t)
 
-;freaking whitespaces trail
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; Auto revert buffers
+(global-auto-revert-mode 1)
 
 ; revert buffer w/o asking
 (setq revert-without-query (quote (".*")))
+
+;freaking whitespaces trail
+(defun cleanup-buffer-safe ()
+  (interactive)
+  (untabify (point-min) (point-max))
+  (delete-trailing-whitespace)
+  (set-buffer-file-coding-system 'utf-8))
+
+(add-hook 'before-save-hook 'cleanup-buffer-safe)
+
+;python
+(add-hook 'python-mode-hook
+          (lambda ()
+            (require 'pymacs)
+            (autoload 'pymacs-apply "pymacs")
+            (autoload 'pymacs-call "pymacs")
+            (autoload 'pymacs-eval "pymacs" nil t)
+            (autoload 'pymacs-exec "pymacs" nil t)
+            (autoload 'pymacs-load "pymacs" nil t)
+            ;; Initialize Rope
+            (ac-ropemacs-initialize)
+            (pymacs-load "ropemacs" "rope-")
+            (setq ropemacs-enable-autoimport t)
+
+            (add-to-list 'ac-sources 'ac-source-ropemacs)))
 
 ;disable menubar/scrollbar/tool-bar
 (custom-set-variables
