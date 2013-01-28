@@ -32,21 +32,21 @@
 
 (add-hook 'before-save-hook 'cleanup-buffer-safe)
 
-;python
-(add-hook 'python-mode-hook
-          (lambda ()
-            (require 'pymacs)
-            (autoload 'pymacs-apply "pymacs")
-            (autoload 'pymacs-call "pymacs")
-            (autoload 'pymacs-eval "pymacs" nil t)
-            (autoload 'pymacs-exec "pymacs" nil t)
-            (autoload 'pymacs-load "pymacs" nil t)
-            ;; Initialize Rope
-            (ac-ropemacs-initialize)
-            (pymacs-load "ropemacs" "rope-")
-            (setq ropemacs-enable-autoimport t)
+;; ;python
+;; (add-hook 'python-mode-hook
+;;           (lambda ()
+;;             (require 'pymacs)
+;;             (autoload 'pymacs-apply "pymacs")
+;;             (autoload 'pymacs-call "pymacs")
+;;             (autoload 'pymacs-eval "pymacs" nil t)
+;;             (autoload 'pymacs-exec "pymacs" nil t)
+;;             (autoload 'pymacs-load "pymacs" nil t)
+;;             ;; Initialize Rope
+;;             (ac-ropemacs-initialize)
+;;             (pymacs-load "ropemacs" "rope-")
+;;             (setq ropemacs-enable-autoimport t)
 
-            (add-to-list 'ac-sources 'ac-source-ropemacs)))
+;;             (add-to-list 'ac-sources 'ac-source-ropemacs)))
 
 ;disable menubar/scrollbar/tool-bar
 (custom-set-variables

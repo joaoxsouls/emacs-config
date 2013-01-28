@@ -17,6 +17,10 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
+;sass
+(require 'scss-mode)
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+
 ;yasnippet
 (require 'yasnippet)
 (setq yas-snippet-dirs
@@ -32,8 +36,7 @@
 (simp-project-define
  '(:has (.git)
    :ignore (.git)))
-(require 'ido-better-flex)
-(ido-better-flex/enable)
+(setq ido-enable-flex-matching t)
 
 ;uniquify
 (require 'uniquify)
@@ -86,3 +89,22 @@
 (require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode nil)
+ '(custom-safe-themes (quote ("c17eba2c8a017959699591f0cbb4739afb3ebb891c0887e58ad95cf667859253" default)))
+ '(indent-tabs-mode nil)
+ '(menu-bar-mode nil)
+ '(scroll-bar-mode nil)
+ '(show-paren-mode t)
+ '(text-mode-hook (quote (text-mode-hook-identify)))
+ '(tool-bar-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
