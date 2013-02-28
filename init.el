@@ -4,6 +4,12 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/modes/themes")
 ;--REQUIRES
 
+(require 'package)
+(add-to-list 'package-archives
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
 ;config files
 (require 'key-bindings)
 (require 'customizations)
@@ -59,9 +65,8 @@
 ;lusty mode
 (require 'lusty-explorer)
 
-;autopair mode
-(require 'autopair)
-(autopair-global-mode) ;; enable autopair in all buffers
+;auto pair brackets
+(electric-pair-mode t)
 
 ;dirtree
 (require 'dirtree)
