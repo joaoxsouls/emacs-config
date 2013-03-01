@@ -14,5 +14,8 @@
   (define-key lusty-mode-map "C-<right>" 'lusty-highlight-next)
   (define-key lusty-mode-map "C-<left>" 'lusty-highlight-previous))
 
+;python-mode hooks
+
+(add-hook 'python-mode-hook 'jedi:setup)
 
 (provide 'mode-hooks)

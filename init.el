@@ -6,14 +6,30 @@
 
 (require 'package)
 (add-to-list 'package-archives
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
+             '("marmalade" .
+               "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
 ;config files
 (require 'key-bindings)
 (require 'customizations)
 (require 'mode-hooks)
+
+;EPC
+(require 'epc)
+
+;autocomplete mode
+(require 'auto-complete)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/modes/autocomplete/dict")
+(require 'auto-complete-config)
+(ac-config-default)
+
+;jedi
+(setq jedi:setup-keys t)
+(autoload 'jedi:setup "jedi" nil t)
+(setq jedi:complete-on-dot t)
 
 ;copy text from emacs to external app
 (require 'pbcopy)
@@ -22,6 +38,9 @@
 ;js2mode fork
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+;python mode
+(require 'python)
 
 ;sass
 (require 'scss-mode)
@@ -50,12 +69,6 @@
 (setq uniquify-separator "/")
 (setq uniquify-after-kill-buffer-p t) ; rename after killing uniquified
 (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
-
-;autocomplete mode
-(require 'auto-complete)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/modes/autocomplete/dict")
-(require 'auto-complete-config)
-(ac-config-default)
 
 ;line numbers
 (require 'linum)

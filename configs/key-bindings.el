@@ -126,3 +126,10 @@
 (global-set-key (kbd "C-c n") 'cleanup-buffer)
 
 (provide 'key-bindings)
+
+;python-mode keys
+(add-hook 'python-mode-hook
+ (lambda ()
+ (local-set-key (kbd "C-d") 'jedi:goto-definition)
+ (local-set-key (kbd "C-M-i") 'jedi:complete))
+)
