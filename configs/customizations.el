@@ -4,6 +4,11 @@
 ;startup msg
 (setq inhibit-startup-message t)
 
+;line and column numbers
+(global-linum-mode 1)
+(setq linum-format " %d ")
+(column-number-mode 1)
+
 ;;theme
 (load-theme 'most-monokai-cli t)
 
@@ -13,6 +18,9 @@
 ;shift select up
 (if (equal "xterm-256color" (tty-type))
       (define-key input-decode-map "\e[1;2A" [S-up]))
+
+;; No yes-or-no, y-or-n instead
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;delete selected text with any key
 (delete-selection-mode t)
