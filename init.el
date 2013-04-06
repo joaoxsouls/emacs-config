@@ -15,7 +15,6 @@
 ;config files
 (require 'key-bindings)
 (require 'customizations)
-(require 'mode-hooks)
 
 ;EPC
 (require 'epc)
@@ -30,6 +29,7 @@
 (setq jedi:setup-keys t)
 (autoload 'jedi:setup "jedi" nil t)
 (setq jedi:complete-on-dot t)
+(add-hook 'python-mode-hook 'jedi:setup)
 
 ;copy text from emacs to external app
 (require 'pbcopy)
@@ -40,8 +40,14 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;coffee-mode
+(defun coffee-custom ()
+  "coffee-mode-hook"
+  (set (make-local-variable 'tab-width) 2))
+
 (autoload 'coffee-mode "coffee-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
+(add-hook 'coffee-mode-hook
+  '(lambda() (coffee-custom)))
 
 
 ;sass
@@ -97,3 +103,13 @@
 (require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
+
+;ternjs javascript autocomplete
+(autoload 'tern-mode "tern.el" nil t)
+(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+
+;python pylint pep8
+(require 'flymake-python-pyflakes)
+(setq flymake-python-pyflakes-executable "flake8")
+(add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+(eval-after-load 'flymake '(require 'flymake-cursor))

@@ -61,15 +61,6 @@
 
 (global-set-key (kbd "C-c n") 'cleanup-buffer)
 
-(provide 'key-bindings)
-
-;python-mode keys
-(add-hook 'python-mode-hook
- (lambda ()
- (local-set-key (kbd "C-d") 'jedi:goto-definition)
- (local-set-key (kbd "C-M-i") 'jedi:complete))
-)
-
 ;ido recentfiles
 (defun recentf-ido-find-file ()
   "Find a recent file using ido."
@@ -80,6 +71,31 @@
 
 (global-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
 
+;python-mode keys
+(add-hook 'python-mode-hook
+ (lambda ()
+ (local-set-key (kbd "C-d") 'jedi:goto-definition)
+ (local-set-key (kbd "C-M-i") 'jedi:complete))
+ (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
+ (local-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
+ )
+;html-mode hooks
+(add-hook 'html-mode-hook
+          (lambda ()
+            (local-set-key (kbd "s-b") 'sgml-skip-tag-backward)
+            (local-set-key (kbd "s-e") 'sgml-skip-tag-forward)
+            (local-set-key (kbd "s-d") 'sgml-delete-tag)
+            (local-set-key (kbd "C-c <right>") 'next-multiframe-window)
+            (local-set-key (kbd "C-c <left>") 'previous-multiframe-window)
+            (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
+            ))
+
+;lusty keys
+
+(add-hook 'lusty-setup-hook 'my-lusty-hook)
+(defun my-lusty-hook ()
+  (define-key lusty-mode-map "C-<right>" 'lusty-highlight-next)
+  (define-key lusty-mode-map "C-<left>" 'lusty-highlight-previous))
 
 ;GLOBAL KEYS
 
@@ -143,3 +159,5 @@
 (global-set-key (kbd "C-M-<down>") 'scroll-up-command)
 
 (global-set-key (kbd "C-M-<up>") 'scroll-down-command)
+
+(provide 'key-bindings)
