@@ -73,12 +73,13 @@
 
 ;python-mode keys
 (add-hook 'python-mode-hook
- (lambda ()
- (local-set-key (kbd "C-d") 'jedi:goto-definition)
- (local-set-key (kbd "C-M-i") 'jedi:complete))
- (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
- (local-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
- )
+          (lambda ()
+            (local-set-key (kbd "C-d") 'jedi:goto-definition)
+            (local-set-key (kbd "C-M-i") 'jedi:complete)
+            (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
+            (local-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
+            ))
+
 ;html-mode hooks
 (add-hook 'html-mode-hook
           (lambda ()
