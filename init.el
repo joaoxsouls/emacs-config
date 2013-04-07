@@ -16,14 +16,21 @@
 (require 'key-bindings)
 (require 'customizations)
 
-;EPC
-(require 'epc)
-
 ;autocomplete mode
 (require 'auto-complete)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/modes/autocomplete/dict")
 (require 'auto-complete-config)
 (ac-config-default)
+
+;python pylint pep8
+(require 'flymake-python-pyflakes)
+(setq flymake-python-pyflakes-executable "flake8")
+(setq flymake-python-pyflakes-extra-arguments '("--ignore=E501,F403"))
+(add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+(eval-after-load 'flymake '(require 'flymake-cursor))
+
+;EPC
+(require 'epc)
 
 ;jedi
 (setq jedi:setup-keys t)
@@ -107,9 +114,3 @@
 ;ternjs javascript autocomplete
 (autoload 'tern-mode "tern.el" nil t)
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
-
-;python pylint pep8
-(require 'flymake-python-pyflakes)
-(setq flymake-python-pyflakes-executable "flake8")
-(add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
-(eval-after-load 'flymake '(require 'flymake-cursor))
