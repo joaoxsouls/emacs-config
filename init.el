@@ -25,7 +25,7 @@
 ;python pylint pep8
 (require 'flymake-python-pyflakes)
 (setq flymake-python-pyflakes-executable "flake8")
-(setq flymake-python-pyflakes-extra-arguments '("--ignore=E501,F403"))
+(setq flymake-python-pyflakes-extra-arguments '("--ignore=E128,E501,F403"))
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 (eval-after-load 'flymake '(require 'flymake-cursor))
 
