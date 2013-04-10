@@ -20,10 +20,11 @@
     ctable
     concurrent
     deferred
+    jedi
     epc
     flymake-cursor flymake-python-pyflakes
     lusty-explorer
-    simp
+;    simp
     ace-jump-mode
     )
   "List of packages needs to be installed at launch")
@@ -102,7 +103,7 @@
 (require 'simp)
 (simp-project-define
  '(:has (.git)
-   :ignore (.git)))
+        :ignore (.git)))
 (setq ido-enable-flex-matching t)
 
 ;make buffer names unique
