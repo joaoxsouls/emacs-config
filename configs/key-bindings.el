@@ -161,4 +161,10 @@
 
 (global-set-key (kbd "C-M-<up>") 'scroll-down-command)
 
+(global-set-key (kbd "C-+") 'text-scale-increase)
+
+(global-set-key (kbd "C--") 'text-scale-decrease)
+
+(global-set-key (kbd "M-x") 'smex)
+
 (provide 'key-bindings)
