@@ -2,7 +2,7 @@
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
 (add-to-list 'custom-theme-load-path "~/.emacs.d/modes/themes")
-(setq default-directory "~/.emacs.d/")
+(setq emacs-directory "~/.emacs.d/")
  ;--REQUIRES
 
 ;--PACKAGE MANAGER
@@ -24,6 +24,7 @@
     flymake-cursor flymake-python-pyflakes
     lusty-explorer
     simp
+    ace-jump-mode
     )
   "List of packages needs to be installed at launch")
 
@@ -54,7 +55,7 @@
 
 ;autocomplete mode
 (require 'auto-complete)
-(add-to-list 'ac-dictionary-directories (concat default-directory "modes/autocomplete/dict"))
+(add-to-list 'ac-dictionary-directories (concat emacs-directory "modes/autocomplete/dict"))
 (require 'auto-complete-config)
 (ac-config-default)
 
@@ -94,7 +95,7 @@
 (setq scss-compile-at-save nil)
 
 ;yasnippet
-(setq yas-snippet-dirs (concat default-directory "modes/yasnippet/snippets/"))
+(setq yas-snippet-dirs (concat emacs-directory "modes/yasnippet/snippets/"))
 (yas-global-mode 1)
 
 ;simp
@@ -106,13 +107,11 @@
 
 ;make buffer names unique
 (require 'uniquify)
-(setq uniquify-buffer-name-style 'reverse)
-(setq uniquify-separator "/")
-(setq uniquify-after-kill-buffer-p t) ; rename after killing uniquified
-(setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
+(setq uniquify-buffer-name-style 'forward)
 
 ;auto pair brackets
 (electric-pair-mode t)
+
 
 ;matching braces
 (show-paren-mode 1)
