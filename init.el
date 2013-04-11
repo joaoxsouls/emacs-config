@@ -24,7 +24,8 @@
     epc
     flymake-cursor flymake-python-pyflakes
     lusty-explorer
-;    simp
+    expand-region
+    ;simp
     ace-jump-mode
     )
   "List of packages needs to be installed at launch")
@@ -137,6 +138,7 @@
 
 ;startup msg
 (setq inhibit-startup-message t)
+(setq inhibit-startup-echo-area-message t)
 
 ;line and column numbers
 (global-linum-mode 1)
