@@ -57,9 +57,15 @@
 
 ;autocomplete mode
 (require 'auto-complete)
-(add-to-list 'ac-dictionary-directories (concat emacs-directory "modes/autocomplete/dict"))
 (require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories (concat emacs-directory "modes/autocomplete/dict"))
 (ac-config-default)
+(setq-default ac-sources '(
+                           ac-source-yasnippet
+                           ac-source-abbrev
+                           ac-source-dictionary
+                           ac-source-words-in-same-mode-buffers
+                           ))
 
 ;python pylint pep8
 (setq flymake-python-pyflakes-executable "flake8")
@@ -98,7 +104,25 @@
 
 ;yasnippet
 (setq yas-snippet-dirs (concat emacs-directory "modes/yasnippet/snippets/"))
+(define-key popup-menu-keymap (kbd "TAB") 'popup-select)
+(define-key popup-menu-keymap (kbd "<tab>") 'popup-select)
+(defun yas-popup-isearch-prompt (prompt choices &optional display-fn)
+  (when (featurep 'popup)
+    (popup-menu*
+     (mapcar
+      (lambda (choice)
+        (popup-make-item
+         (or (and display-fn (funcall display-fn choice))
+             choice)
+         :value choice))
+      choices)
+     :prompt prompt
+     ;; start isearch mode immediately
+     :isearch t
+     )))
+(setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))
 (yas-global-mode 1)
+
 
 ;simp
 (require 'simp)
@@ -216,6 +240,8 @@
 ;font and window customizations
 (custom-set-faces
  `(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :foundry "apple" :family "Consolas")))))
+(set-cursor-color "#ffffff")
 (set-frame-width (selected-frame) 130)
 (set-frame-height (selected-frame) 40)
-(load-theme 'most-monokai-gui t)))
+(load-theme 'most-monokai-gui t))
+)
