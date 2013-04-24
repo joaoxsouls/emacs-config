@@ -129,7 +129,7 @@
 
 (global-set-key (kbd "M-<right>") 'forward-word)
 
-(global-set-key (kbd "M-<left>") 'backward-word)
+(global-set-key (kbd "M-<left>") 'backward-wod)
 
 (global-set-key (kbd "C-<up>") 'beginning-of-buffer)
 
@@ -184,11 +184,9 @@
 
 (global-set-key (kbd "C--") 'text-scale-decrease)
 
-(global-set-key (kbd "M-b") 'iy-go-to-char-backward)
-
-(global-set-key (kbd "M-f") 'iy-go-to-char)
-
 (global-set-key (kbd "M-x") 'smex)
+
+(global-set-key (kbd "M-m") 'mc/mark-all-like-this)
 
 (define-key global-map (kbd "C-@") 'ace-jump-mode)
 
