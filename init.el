@@ -29,6 +29,7 @@
     lusty-explorer
     expand-region
     ;simp
+    multiple-cursors
     ace-jump-mode
     )
   "List of packages needs to be installed at launch")
