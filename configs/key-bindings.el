@@ -14,8 +14,8 @@
   (forward-line -1)
   (indent-for-tab-command))
 
-(global-set-key (kbd "C-c C-b") 'open-line-below)
-(global-set-key (kbd "C-c C-a") 'open-line-above)
+(global-set-key (kbd "C-c C-a") 'open-line-below)
+(global-set-key (kbd "C-c C-b") 'open-line-above)
 
 ;rename files
 (defun rename-current-buffer-file ()
@@ -184,9 +184,15 @@
 
 (global-set-key (kbd "C--") 'text-scale-decrease)
 
+(global-set-key (kbd "M-b") 'iy-go-to-char-backward)
+
+(global-set-key (kbd "M-f") 'iy-go-to-char)
+
 (global-set-key (kbd "M-x") 'smex)
 
-(define-key global-map (kbd "C-q") 'ace-jump-mode)
+(define-key global-map (kbd "C-@") 'ace-jump-mode)
+
+(define-key global-map (kbd "M-SPC") 'ace-jump-char-mode)
 
 (define-key global-map (kbd "C-e") 'er/expand-region)
 

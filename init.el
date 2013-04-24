@@ -16,7 +16,10 @@
 (defvar package-list
   '(
     auto-complete yasnippet
-    js2-mode coffee-mode css-mode scss-mode
+    js2-mode
+    coffee-mode
+    css-mode
+    scss-mode
     ctable
     concurrent
     deferred
@@ -157,7 +160,7 @@
 
 ;ternjs javascript autocomplete
 (autoload 'tern-mode "tern.el" nil t)
-(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+ (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
 
 
 ;startup msg
