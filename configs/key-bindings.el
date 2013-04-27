@@ -53,6 +53,18 @@
 
 (global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
 
+(defun comment-or-uncomment-region-or-line ()
+  "comment or uncomment a region if selected, otherwise the whole line"
+  (interactive)
+  (save-excursion
+    (if (region-active-p)
+    (progn
+      (comment-or-uncomment-region (region-beginning) (region-end)))
+    (progn
+      (comment-or-uncomment-region (line-beginning-position) (line-end-position))))))
+
+(global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
+
 ;clean-up and ident
 (defun cleanup-buffer ()
   (interactive)
@@ -95,7 +107,7 @@
           (lambda ()
             (local-set-key (kbd "C-d") 'jedi:goto-definition)
             (local-set-key (kbd "C-M-i") 'jedi:complete)
-            (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
+            (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-line)
             (local-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
             ))
 
@@ -107,7 +119,7 @@
             (local-set-key (kbd "s-d") 'sgml-delete-tag)
             (local-set-key (kbd "C-c <right>") 'next-multiframe-window)
             (local-set-key (kbd "C-c <left>") 'previous-multiframe-window)
-            (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
+            (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-line)
             ))
 
 ;lusty keys
@@ -152,6 +164,7 @@
 (global-set-key (kbd "C-a") 'mark-whole-buffer)
 
 (global-set-key (kbd "C-<right>") 'end-of-visual-line)
+
 (global-set-key (kbd "C-<left>") 'beginning-of-visual-line)
 
 (global-set-key (kbd "C-x u") 'undo-only)
@@ -163,8 +176,6 @@
 (global-set-key (kbd "s-r") 'replace-string)
 
 (global-set-key (kbd "s-u") 'lusty-file-explorer)
-
-(global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
 
 (global-set-key (kbd "C-n") 'dirtree-show)
 
@@ -186,12 +197,12 @@
 
 (global-set-key (kbd "M-x") 'smex)
 
-(global-set-key (kbd "M-m") 'mc/mark-all-like-this)
+(global-set-key (kbd "M-.") 'mc/mark-all-like-this)
 
-(define-key global-map (kbd "C-@") 'ace-jump-mode)
+(global-set-key (kbd "M-SPC") 'ace-jump-char-mode)
 
-(define-key global-map (kbd "M-SPC") 'ace-jump-char-mode)
+(global-set-key (kbd "C-@") 'ace-jump-mode)
 
-(define-key global-map (kbd "C-e") 'er/expand-region)
+(global-set-key (kbd "C-e") 'er/expand-region)
 
 (provide 'key-bindings)
