@@ -1,21 +1,36 @@
 ;KEY-BINDINGS
 
+;kill region or line
+(defun kill-region-or-whole-line ()
+  (interactive)
+  (save-excursion
+    (if (region-active-p)
+        (progn
+          (kill-region (region-beginning) (region-end)))
+      (progn
+        (kill-whole-line)))))
+
+(global-set-key (kbd "C-k") 'kill-region-or-whole-line)
+
 ;new line after and before the current
 (defun open-line-below ()
   (interactive)
-  (end-of-line)
-  (newline)
-  (indent-for-tab-command))
+  (save-excursion
+    (end-of-line)
+    (newline)
+    (indent-for-tab-command)))
 
 (defun open-line-above ()
-  (interactive)
-  (beginning-of-line)
-  (newline)
-  (forward-line -1)
-  (indent-for-tab-command))
 
-(global-set-key (kbd "C-c C-a") 'open-line-below)
-(global-set-key (kbd "C-c C-b") 'open-line-above)
+  (interactive)
+  (save-excursion
+    (forward-line -1)
+    (end-of-line)
+    (newline)
+    (indent-for-tab-command)))
+
+(global-set-key (kbd "C-c C-b") 'open-line-below)
+(global-set-key (kbd "C-c C-a") 'open-line-above)
 
 ;rename files
 (defun rename-current-buffer-file ()
