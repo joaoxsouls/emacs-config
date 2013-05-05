@@ -160,6 +160,8 @@
 (setq recentf-max-menu-items 25)
 
 ;ternjs javascript autocomplete
+(defun tern-message (fmt &rest objects)
+  (popup-tip (apply 'format fmt objects)))
 (autoload 'tern-mode "tern.el" nil t)
  (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
 

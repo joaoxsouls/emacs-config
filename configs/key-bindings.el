@@ -32,6 +32,12 @@
 (global-set-key (kbd "C-c C-b") 'open-line-below)
 (global-set-key (kbd "C-c C-a") 'open-line-above)
 
+(defun prompt-kill-line ()
+  (interactive)
+  (save-excursion
+    (goto-line (read-number "Kill line:"))
+    (kill-whole-line)))
+(global-set-key (kbd "C-C C-l") 'prompt-kill-line)
 ;rename files
 (defun rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
@@ -73,10 +79,10 @@
   (interactive)
   (save-excursion
     (if (region-active-p)
-    (progn
-      (comment-or-uncomment-region (region-beginning) (region-end)))
-    (progn
-      (comment-or-uncomment-region (line-beginning-position) (line-end-position))))))
+        (progn
+          (comment-or-uncomment-region (region-beginning) (region-end)))
+      (progn
+        (comment-or-uncomment-region (line-beginning-position) (line-end-position))))))
 
 (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
 
@@ -219,5 +225,7 @@
 (global-set-key (kbd "C-@") 'ace-jump-mode)
 
 (global-set-key (kbd "C-e") 'er/expand-region)
+
+(global-set-key (kbd "RET") 'newline-and-indent)
 
 (provide 'key-bindings)
