@@ -1,14 +1,16 @@
 ;KEY-BINDINGS
 
 ;kill region or line
-(defun kill-region-or-whole-line ()
-  (interactive)
+(defun kill-region-or-whole-line (&optional arg)
+  (interactive "P")
   (save-excursion
     (if (region-active-p)
         (progn
           (kill-region (region-beginning) (region-end)))
       (progn
-        (kill-whole-line)))))
+        (if (boundp 'arg)
+            (kill-whole-line arg)
+          (kill-whole-line))))))
 
 (global-set-key (kbd "C-k") 'kill-region-or-whole-line)
 
@@ -32,12 +34,6 @@
 (global-set-key (kbd "C-c C-b") 'open-line-below)
 (global-set-key (kbd "C-c C-a") 'open-line-above)
 
-(defun prompt-kill-line ()
-  (interactive)
-  (save-excursion
-    (goto-line (read-number "Kill line:"))
-    (kill-whole-line)))
-(global-set-key (kbd "C-C C-l") 'prompt-kill-line)
 ;rename files
 (defun rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
@@ -176,7 +172,7 @@
 
 (global-set-key (kbd "C-x C-f") 'lusty-file-explorer)
 
-(global-set-key (kbd "C-u") 'simp-project-find-file)
+(global-set-key (kbd "C-C C-p") 'simp-project-find-file)
 
 (global-set-key (kbd "C-c <right>") 'next-multiframe-window)
 
