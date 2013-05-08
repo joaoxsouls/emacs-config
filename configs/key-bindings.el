@@ -124,8 +124,9 @@
           (lambda ()
             (local-set-key (kbd "C-d") 'jedi:goto-definition)
             (local-set-key (kbd "C-M-i") 'jedi:complete)
-            (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-line)
+            (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
             (local-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
+            (local-set-key (kbd "C-c C-p") 'simp-project-find-file)
             ))
 
 ;html-mode hooks
@@ -136,15 +137,10 @@
             (local-set-key (kbd "s-d") 'sgml-delete-tag)
             (local-set-key (kbd "C-c <right>") 'next-multiframe-window)
             (local-set-key (kbd "C-c <left>") 'previous-multiframe-window)
-            (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-line)
+            (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
             ))
 
 ;lusty keys
-
-(add-hook 'lusty-setup-hook 'my-lusty-hook)
-(defun my-lusty-hook ()
-  (define-key lusty-mode-map "C-<right>" 'lusty-highlight-next)
-  (define-key lusty-mode-map "C-<left>" 'lusty-highlight-previous))
 
 ;GLOBAL KEYS
 
