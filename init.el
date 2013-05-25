@@ -20,6 +20,7 @@
     coffee-mode
     css-mode
     scss-mode
+    go-mode
     ctable
     concurrent
     deferred

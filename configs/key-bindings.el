@@ -1,4 +1,4 @@
-;KEY-BINDINGS
+
 
 ;new line after and before the current
 (defun open-line-below ()
@@ -61,10 +61,9 @@
   (interactive)
   (save-excursion
     (if (region-active-p)
-        (progn
           (comment-or-uncomment-region (region-beginning) (region-end)))
-      (progn
-        (comment-or-uncomment-region (line-beginning-position) (line-end-position))))))
+        (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
+(global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
 
 ;copy region or line
 (defun copy-region-or-whole-line (arg)
@@ -72,7 +71,7 @@
   (save-excursion)
   (if (region-active-p)
       (kill-ring-save (region-beginning) (region-end))
-    (kill-ring-save (line-beginning-position) (line-beginning-position (+ 1 arg)))))
+    (kill-ring-save (line-beginning-position) (line-end-position))))
   (global-set-key (kbd "M-w") 'copy-region-or-whole-line)
 
 ;kill region or line
@@ -82,8 +81,15 @@
     (if (region-active-p)
           (kill-region (region-beginning) (region-end))
             (kill-whole-line arg))))
-
 (global-set-key (kbd "C-w") 'kill-region-or-whole-line)
+
+(defun delete-region-or-whole-line(&optional arg)
+  (interactive "p")
+  (save-excursion
+  (if (region-active-p)
+  (delete-region (region-beginning) (region-end))
+  (delete-region (line-beginning-position) (line-beginning-position 2)))))
+(global-set-key (kbd "C-k") 'delete-region-or-whole-line)
 
 ;clean-up and ident
 (defun cleanup-buffer ()
@@ -215,7 +221,7 @@
 
 (global-set-key (kbd "M-.") 'mc/mark-all-like-this)
 
-(global-set-key (kbd "M-SPC") 'ace-jump-char-mode)
+(global-set-key (kbd "M-SPC") 'ace-jump-line-mode)
 
 (global-set-key (kbd "C-@") 'ace-jump-mode)
 
