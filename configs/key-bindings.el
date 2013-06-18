@@ -61,8 +61,8 @@
   (interactive)
   (save-excursion
     (if (region-active-p)
-          (comment-or-uncomment-region (region-beginning) (region-end)))
-        (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
+        (comment-or-uncomment-region (region-beginning) (region-end))
+    (comment-or-uncomment-region (line-beginning-position) (line-end-position)))))
 (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
 
 ;copy region or line
@@ -88,7 +88,7 @@
   (save-excursion
   (if (region-active-p)
   (delete-region (region-beginning) (region-end))
-  (delete-region (line-beginning-position) (line-beginning-position 2)))))
+  (delete-region (line-beginning-position) (line-end-position)))))
 (global-set-key (kbd "C-k") 'delete-region-or-whole-line)
 
 ;clean-up and ident
