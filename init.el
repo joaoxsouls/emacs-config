@@ -15,18 +15,25 @@
 
 (defvar package-list
   '(
-    auto-complete yasnippet
+    auto-complete
+    yasnippet
+    mmm-mode
+    web-mode
     js2-mode
     coffee-mode
     css-mode
     scss-mode
     go-mode
+    go-autocomplete
     ctable
     concurrent
     deferred
     jedi
     epc
-    flymake-cursor flymake-python-pyflakes
+    flymake-cursor
+    flymake-python-pyflakes
+    flymake-ruby
+    robe
     lusty-explorer
     expand-region
     ;simp
@@ -84,6 +91,12 @@
 (setq jedi:complete-on-dot t)
 (add-hook 'python-mode-hook 'jedi:setup)
 
+;ruby flymake
+(require 'flymake-ruby)
+(add-hook 'ruby-mode-hook 'flymake-ruby-load)
+(add-hook 'ruby-mode-hook 'robe-mode)
+(push 'ac-source-robe ac-sources)
+
 ;copy text from emacs to external app
 (require 'pbcopy)
 (turn-on-pbcopy)
@@ -103,9 +116,18 @@
   '(lambda() (coffee-custom)))
 
 
-;sass
+;sass, css
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 (setq scss-compile-at-save nil)
+(add-hook 'css-mode-hook 'flymake-mode)
+(add-hook 'scss-mode-hook 'flymake-mode)
+
+;go
+(require 'go-autocomplete)
+(require 'go-flymake)
+
+;mmm mode
+(require 'mmm-auto)
 
 ;yasnippet
 (setq yas-snippet-dirs (concat emacs-directory "modes/yasnippet/snippets/"))
