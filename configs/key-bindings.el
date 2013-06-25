@@ -80,7 +80,7 @@
   (save-excursion
     (if (region-active-p)
           (kill-region (region-beginning) (region-end))
-            (kill-whole-line arg))))
+            (kill-region (line-beginning-position) (line-end-position)))))
 (global-set-key (kbd "C-w") 'kill-region-or-whole-line)
 
 (defun delete-region-or-whole-line(&optional arg)
@@ -127,6 +127,14 @@
       (find-file file))))
 
 (global-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
+
+;rgrep project
+(eval-after-load "grep"
+  '(grep-compute-defaults))
+(defun rgrep-project()
+  (interactive)
+  (rgrep (grep-read-regexp) "*.*" (simp-project-root))
+  )
 
 ;python-mode keys
 (add-hook 'python-mode-hook
