@@ -75,13 +75,13 @@
   (global-set-key (kbd "M-w") 'copy-region-or-whole-line)
 
 ;kill region or line
-(defun kill-region-or-whole-line (&optional arg)
+(defun kill-region-or-line (&optional arg)
   (interactive "p")
   (save-excursion
     (if (region-active-p)
           (kill-region (region-beginning) (region-end))
             (kill-region (line-beginning-position) (line-end-position)))))
-(global-set-key (kbd "C-w") 'kill-region-or-whole-line)
+(global-set-key (kbd "C-w") 'kill-region-or-line)
 
 (defun delete-region-or-whole-line(&optional arg)
   (interactive "p")
@@ -90,6 +90,11 @@
   (delete-region (region-beginning) (region-end))
   (delete-region (line-beginning-position) (line-end-position)))))
 (global-set-key (kbd "C-k") 'delete-region-or-whole-line)
+
+(defun delete-whole-line()
+  (interactive)
+  (delete-region (line-beginning-position) (line-beginning-position 2)))
+(global-set-key (kbd "M-k") 'delete-whole-line)
 
 ;clean-up and ident
 (defun cleanup-buffer ()
