@@ -1,6 +1,4 @@
-
-
-;new line after and before the current
+;;new line after and before the current
 (defun open-line-below ()
   (interactive)
   (save-excursion
@@ -20,7 +18,7 @@
 (global-set-key (kbd "C-c C-b") 'open-line-below)
 (global-set-key (kbd "C-c C-a") 'open-line-above)
 
-;rename files
+;;rename files
 (defun rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
   (interactive)
@@ -40,7 +38,7 @@
 
 (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
 
-;delete files
+;;delete files
 (defun delete-current-buffer-file ()
   "Removes file connected to current buffer and kills buffer."
   (interactive)
@@ -62,33 +60,33 @@
   (save-excursion
     (if (region-active-p)
         (comment-or-uncomment-region (region-beginning) (region-end))
-    (comment-or-uncomment-region (line-beginning-position) (line-end-position)))))
-(global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
+      (comment-or-uncomment-region (line-beginning-position) (line-end-position)))))
+(global-set-key (kbd "C-d") 'comment-or-uncomment-region-or-line)
 
-;copy region or line
+;;copy region or line
 (defun copy-region-or-whole-line (arg)
   (interactive "p")
   (save-excursion)
   (if (region-active-p)
       (kill-ring-save (region-beginning) (region-end))
     (kill-ring-save (line-beginning-position) (line-end-position))))
-  (global-set-key (kbd "M-w") 'copy-region-or-whole-line)
+(global-set-key (kbd "M-w") 'copy-region-or-whole-line)
 
-;kill region or line
+;;kill region or line
 (defun kill-region-or-line (&optional arg)
   (interactive "p")
   (save-excursion
     (if (region-active-p)
-          (kill-region (region-beginning) (region-end))
-            (kill-region (line-beginning-position) (line-end-position)))))
+        (kill-region (region-beginning) (region-end))
+      (kill-region (line-beginning-position) (line-end-position)))))
 (global-set-key (kbd "C-w") 'kill-region-or-line)
 
 (defun delete-region-or-whole-line(&optional arg)
   (interactive "p")
   (save-excursion
-  (if (region-active-p)
-  (delete-region (region-beginning) (region-end))
-  (delete-region (line-beginning-position) (line-end-position)))))
+    (if (region-active-p)
+        (delete-region (region-beginning) (region-end))
+      (delete-region (line-beginning-position) (line-end-position)))))
 (global-set-key (kbd "C-k") 'delete-region-or-whole-line)
 
 (defun delete-whole-line()
@@ -96,7 +94,7 @@
   (delete-region (line-beginning-position) (line-beginning-position 2)))
 (global-set-key (kbd "M-k") 'delete-whole-line)
 
-;clean-up and ident
+;;clean-up and ident
 (defun cleanup-buffer ()
   (interactive)
   (cleanup-buffer-safe)
@@ -123,7 +121,7 @@
 
 (global-set-key (kbd "C-c n") 'cleanup-buffer)
 
-;ido recentfiles
+;;ido recentfiles
 (defun recentf-ido-find-file ()
   "Find a recent file using ido."
   (interactive)
@@ -133,7 +131,7 @@
 
 (global-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
 
-;rgrep project
+;;rgrep project
 (eval-after-load "grep"
   '(grep-compute-defaults))
 (defun rgrep-project()
@@ -141,7 +139,8 @@
   (rgrep (grep-read-regexp) "*.*" (simp-project-root))
   )
 
-;python-mode keys
+;;python-mode keys
+;;hook functions
 (add-hook 'python-mode-hook
           (lambda ()
             (local-set-key (kbd "C-d") 'jedi:goto-definition)
@@ -151,7 +150,7 @@
             (local-set-key (kbd "C-c C-p") 'simp-project-find-file)
             ))
 
-;html-mode hooks
+;;html-mode hooks
 (add-hook 'html-mode-hook
           (lambda ()
             (local-set-key (kbd "s-b") 'sgml-skip-tag-backward)
@@ -162,9 +161,7 @@
             (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
             ))
 
-;lusty keys
-
-;GLOBAL KEYS
+;;GLOBAL KEYS
 
 (global-set-key (kbd "M-n") 'backward-paragraph)
 
@@ -214,7 +211,7 @@
 
 (global-set-key (kbd "C-n") 'dirtree-show)
 
-(global-set-key (kbd "C-x b")   'lusty-buffer-explorer)
+(global-set-key (kbd "C-x b") 'lusty-buffer-explorer)
 
 (global-set-key (kbd "C-c s") 'desktop-save)
 
