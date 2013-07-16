@@ -239,4 +239,12 @@
 
 (global-set-key (kbd "RET") 'newline-and-indent)
 
+(key-chord-define-global "dd" 'comment-or-uncomment-region-or-line)
+
+(key-chord-define-global "kk" 'delete-whole-line)
+
+(key-chord-define-global "kl" 'delete-region-or-whole-line)
+
+(key-chord-define-global ",," 'lusty-buffer-explorer)
+
 (provide 'key-bindings)

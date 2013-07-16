@@ -37,6 +37,7 @@
     lusty-explorer
     expand-region
     ;simp
+    key-chord
     multiple-cursors
     ace-jump-mode
     )
@@ -240,6 +241,10 @@
  '(text-mode-hook (quote (text-mode-hook-identify)))
  '(tool-bar-mode nil))
 (custom-set-faces)
+
+;keychord mode
+
+(key-chord-mode +1)
 
 ;------------------
 ;GUI-only  Customizations
