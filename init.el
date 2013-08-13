@@ -23,6 +23,7 @@
     coffee-mode
     css-mode
     scss-mode
+    sass-mode
     go-mode
     go-autocomplete
     ctable
@@ -40,6 +41,7 @@
     key-chord
     multiple-cursors
     ace-jump-mode
+    multi-web-mode
     )
   "List of packages needs to be installed at launch")
 
@@ -107,9 +109,9 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;coffee-mode
-(defun coffee-custom ()
-  "coffee-mode-hook"
-  (set (make-local-variable 'tab-width) 2))
+;; (defun coffee-custom ()
+;;   "coffee-mode-hook"
+;;   (set (make-local-variable 'tab-width) 2))
 
 (autoload 'coffee-mode "coffee-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
@@ -208,7 +210,7 @@
 
 ;shift select up
 (if (equal "xterm-256color" (tty-type))
-      (define-key input-decode-map "\e[1;2A" [S-up]))
+    (define-key input-decode-map "\e[1;2A" [S-up]))
 
 ;; No yes-or-no, y-or-n instead
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -231,7 +233,10 @@
 
 (add-hook 'before-save-hook 'cleanup-buffer-safe)
 
-;disable menubar/scrollbar/tool-bar
+;;camel case
+(add-hook 'prog-mode-hook 'subword-mode)
+
+;;disable menubar/scrollbar/tool-bar
 (custom-set-variables
  '(blink-cursor-mode nil)
  '(menu-bar-mode nil)
@@ -242,9 +247,17 @@
  '(tool-bar-mode nil))
 (custom-set-faces)
 
-;keychord mode
+;;keychord mode
 
 (key-chord-mode +1)
+
+;;multi-web-mode
+(require 'multi-web-mode)
+(setq mweb-default-major-mode 'html-mode)
+(setq mweb-tags '((js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+                  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
+(multi-web-global-mode 1)
 
 ;------------------
 ;GUI-only  Customizations
