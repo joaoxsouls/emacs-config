@@ -82,7 +82,10 @@
                            ac-source-words-in-same-mode-buffers
                            ))
 
-;python pylint pep8
+;ace-jump mode
+(setq ace-jump-mode-gray-background nil)
+
+;;python pylint pep8
 (setq flymake-python-pyflakes-executable "flake8")
 (setq flymake-python-pyflakes-extra-arguments '("--ignore=E128,E501,F403"))
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)

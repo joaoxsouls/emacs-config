@@ -213,6 +213,8 @@
 
 (global-set-key (kbd "C-x b") 'lusty-buffer-explorer)
 
+(global-set-key (kbd "C-x C-b") 'lusty-buffer-explorer)
+
 (global-set-key (kbd "C-c s") 'desktop-save)
 
 (global-set-key (kbd "C-c l") 'desktop-change-dir)
@@ -236,6 +238,10 @@
 (global-set-key (kbd "C-@") 'ace-jump-mode)
 
 (global-set-key (kbd "C-e") 'er/expand-region)
+
+(global-set-key (kbd "C-^") 'mc/mark-next-like-this)
+
+(global-set-key (kbd "C-_") 'mc/mark-previous-like-this)
 
 (global-set-key (kbd "RET") 'newline-and-indent)
 
