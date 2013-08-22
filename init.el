@@ -15,6 +15,7 @@
 
 (defvar package-list
   '(
+    smex
     auto-complete
     yasnippet
     mmm-mode
@@ -67,7 +68,7 @@
 (require 'key-bindings)
 
 ;--LOAD MODES
-
+(require 'smex)
 (smex-initialize)
 
 ;autocomplete mode
