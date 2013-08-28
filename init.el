@@ -1,11 +1,11 @@
-;--PATHS
+;;--PATHS
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
 (add-to-list 'custom-theme-load-path "~/.emacs.d/modes/themes")
 (setq emacs-directory "~/.emacs.d/")
- ;--REQUIRES
+;;--REQUIRES
 
-;--PACKAGE MANAGER
+;;--PACKAGE MANAGER
 (require 'package)
 (require 'melpa)
 (require 'cl)
@@ -18,7 +18,6 @@
     smex
     auto-complete
     yasnippet
-    mmm-mode
     web-mode
     js2-mode
     coffee-mode
@@ -38,11 +37,12 @@
     robe
     lusty-explorer
     expand-region
-    ;simp
+    ;;simp
     key-chord
     multiple-cursors
     ace-jump-mode
     multi-web-mode
+    undo-tree
     )
   "List of packages needs to be installed at launch")
 
@@ -64,14 +64,14 @@
     (when (not (package-installed-p p))
       (package-install p))))
 
-;config files
+;;config files
 (require 'key-bindings)
 
-;--LOAD MODES
+;;--LOAD MODES
 (require 'smex)
 (smex-initialize)
 
-;autocomplete mode
+;;autocomplete mode
 (require 'auto-complete)
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories (concat emacs-directory "modes/autocomplete/dict"))
@@ -83,8 +83,11 @@
                            ac-source-words-in-same-mode-buffers
                            ))
 
-;ace-jump mode
+;;ace-jump mode
 (setq ace-jump-mode-gray-background nil)
+
+;;undo-tree-mode
+(global-undo-tree-mode)
 
 ;;python pylint pep8
 (setq flymake-python-pyflakes-executable "flake8")
@@ -92,27 +95,27 @@
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 (eval-after-load 'flymake '(require 'flymake-cursor))
 
-;jedi
+;;jedi
 (setq jedi:setup-keys t)
 (autoload 'jedi:setup "jedi" nil t)
 (setq jedi:complete-on-dot t)
 (add-hook 'python-mode-hook 'jedi:setup)
 
-;ruby flymake
+;;ruby flymake
 (require 'flymake-ruby)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 (add-hook 'ruby-mode-hook 'robe-mode)
 (push 'ac-source-robe ac-sources)
 
-;copy text from emacs to external app
+;;copy text from emacs to external app
 (require 'pbcopy)
 (turn-on-pbcopy)
 
-;js2mode fork
+;;js2mode fork
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
-;coffee-mode
+;;coffee-mode
 ;; (defun coffee-custom ()
 ;;   "coffee-mode-hook"
 ;;   (set (make-local-variable 'tab-width) 2))
@@ -120,23 +123,20 @@
 (autoload 'coffee-mode "coffee-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
 (add-hook 'coffee-mode-hook
-  '(lambda() (coffee-custom)))
+          '(lambda() (coffee-custom)))
 
 
-;sass, css
+;;sass, css
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 (setq scss-compile-at-save nil)
 (add-hook 'css-mode-hook 'flymake-mode)
 (add-hook 'scss-mode-hook 'flymake-mode)
 
-;go
+;;go
 (require 'go-autocomplete)
 (require 'go-flymake)
 
-;mmm mode
-(require 'mmm-auto)
-
-;yasnippet
+;;yasnippet
 (setq yas-snippet-dirs (concat emacs-directory "modes/yasnippet/snippets/"))
 (define-key popup-menu-keymap (kbd "TAB") 'popup-select)
 (define-key popup-menu-keymap (kbd "<tab>") 'popup-select)
@@ -158,77 +158,76 @@
 (yas-global-mode 1)
 
 
-;simp
+;;simp
 (require 'simp)
 (simp-project-define
  '(:has (.git)
         :ignore (.git)))
 (setq ido-enable-flex-matching t)
 
-;make buffer names unique
+;;make buffer names unique
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
-;auto pair brackets
+;;auto pair brackets
 (electric-pair-mode t)
 
 
-;matching braces
+;;matching braces
 (show-paren-mode 1)
 
-;mouse support on cli
+;;mouse support on cli
 (xterm-mouse-mode)
 
-;disable backup files
+;;disable backup files
 (setq backup-inhibited t)
-;disable auto save
+;;disable auto save
 (setq auto-save-default nil)
 
-;recent files
+;;recent files
 (require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 
-;ternjs javascript autocomplete
+;;ternjs javascript autocomplete
 (autoload 'tern-mode "tern.el" nil t)
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
 (eval-after-load 'tern
-   '(progn
-      (require 'tern-auto-complete)
-      (tern-ac-setup)))
+  '(progn
+     (require 'tern-auto-complete)
+     (tern-ac-setup)))
 
-;startup msg
+;;startup msg
 (setq inhibit-startup-message t)
 (setq inhibit-startup-echo-area-message t)
-
-;line and column numbers
+;;sasdads
+;;line and column numbers
 (global-linum-mode 1)
 (setq linum-format " %d ")
 (column-number-mode 1)
-
 ;;theme
 (load-theme 'most-monokai-cli t)
 
-;mac os x option key as meta
+;;mac os x option key as meta
 (set-keyboard-coding-system nil)
 
-;shift select up
+;;shift select up
 (if (equal "xterm-256color" (tty-type))
     (define-key input-decode-map "\e[1;2A" [S-up]))
 
 ;; No yes-or-no, y-or-n instead
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;delete selected text with any key
+;;delete selected text with any key
 (delete-selection-mode t)
 
 ;; Auto revert buffers
 (global-auto-revert-mode 1)
 
-; revert buffer w/o asking
+;; revert buffer w/o asking
 (setq revert-without-query (quote (".*")))
 
-;freaking whitespaces trail
+;;freaking whitespaces trail
 (defun cleanup-buffer-safe ()
   (interactive)
   (untabify (point-min) (point-max))
@@ -242,14 +241,24 @@
 
 ;;disable menubar/scrollbar/tool-bar
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
- '(menu-bar-mode nil)
+ '(custom-safe-themes (quote ("c17eba2c8a017959699591f0cbb4739afb3ebb891c0887e58ad95cf667859253" default)))
  '(indent-tabs-mode nil)
+ '(menu-bar-mode nil)
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(text-mode-hook (quote (text-mode-hook-identify)))
  '(tool-bar-mode nil))
-(custom-set-faces)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 
 ;;keychord mode
 
@@ -263,37 +272,37 @@
 (setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
 (multi-web-global-mode 1)
 
-;------------------
-;GUI-only  Customizations
-;------------------
+;;------------------
+;;GUI-only  Customizations
+;;------------------
 
-;face customizations
+;;face customizations
 (if (window-system)
-(progn
-(global-visual-line-mode)
-(put 'upcase-region 'disabled nil)
-(global-set-key "\C-cz" 'show-file-name)
-(setq transparency-level 90)
-;transparency
-(set-frame-parameter nil 'alpha transparency-level)
-(add-hook 'after-make-frame-functions (lambda (selected-frame) (set-frame-parameter selected-frame 'alpha transparency-level)))
-(setq frame-title-format
-;file location on statusbar
-  '(:eval
-    (if buffer-file-name
-        (replace-regexp-in-string
-         "\\\\" "/"
-         (replace-regexp-in-string
-          (regexp-quote (getenv "HOME")) "~"
-          (convert-standard-filename buffer-file-name)))
-      (buffer-name))))
-(put 'upcase-region 'disabled nil)
-(global-set-key "\C-cz" 'show-file-name)
-;font and window customizations
-(custom-set-faces
- `(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :foundry "apple" :family "Consolas")))))
-(set-cursor-color "#ffffff")
-(set-frame-width (selected-frame) 130)
-(set-frame-height (selected-frame) 40)
-(load-theme 'most-monokai-gui t))
-)
+    (progn
+      (global-visual-line-mode)
+      (put 'upcase-region 'disabled nil)
+      (global-set-key "\C-cz" 'show-file-name)
+      (setq transparency-level 90)
+      ;;transparency
+      (set-frame-parameter nil 'alpha transparency-level)
+      (add-hook 'after-make-frame-functions (lambda (selected-frame) (set-frame-parameter selected-frame 'alpha transparency-level)))
+      (setq frame-title-format
+            ;;file location on statusbar
+            '(:eval
+              (if buffer-file-name
+                  (replace-regexp-in-string
+                   "\\\\" "/"
+                   (replace-regexp-in-string
+                    (regexp-quote (getenv "HOME")) "~"
+                    (convert-standard-filename buffer-file-name)))
+                (buffer-name))))
+      (put 'upcase-region 'disabled nil)
+      (global-set-key "\C-cz" 'show-file-name)
+      ;;font and window customizations
+      (custom-set-faces
+       `(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :foundry "apple" :family "Inconsolata")))))
+      (set-cursor-color "#ffffff")
+      (set-frame-width (selected-frame) 130)
+      (set-frame-height (selected-frame) 40)
+      (load-theme 'most-monokai-gui t))
+  )
