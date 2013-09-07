@@ -24,6 +24,8 @@
     css-mode
     scss-mode
     sass-mode
+    puppet-mode
+    markdown-mode
     go-mode
     go-autocomplete
     ctable
