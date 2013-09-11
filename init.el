@@ -6,67 +6,36 @@
 ;;--REQUIRES
 
 ;;--PACKAGE MANAGER
-(require 'package)
-(require 'melpa)
-(require 'cl)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
+(require 'init-elpa)
 
-(defvar package-list
-  '(
-    smex
-    auto-complete
-    yasnippet
-    web-mode
-    js2-mode
-    coffee-mode
-    css-mode
-    scss-mode
-    sass-mode
-    puppet-mode
-    markdown-mode
-    go-mode
-    go-autocomplete
-    ctable
-    concurrent
-    deferred
-    jedi
-    epc
-    flymake-cursor
-    flymake-python-pyflakes
-    flymake-ruby
-    robe
-    lusty-explorer
-    expand-region
-    ;;simp
-    key-chord
-    multiple-cursors
-    ace-jump-mode
-    multi-web-mode
-    undo-tree
-    )
-  "List of packages needs to be installed at launch")
+(require-package 'smex)
+(require-package 'auto-complete)
+(require-package 'yasnippet)
+(require-package 'js2-mode)
+(require-package 'coffee-mode)
+(require-package 'css-mode)
+(require-package 'scss-mode)
+(require-package 'sass-mode)
+(require-package 'multi-web-mode)
+(require-package 'puppet-mode)
+(require-package 'markdown-mode)
+(require-package 'go-mode)
+(require-package 'go-autocomplete)
+(require-package 'ctable)
+(require-package 'concurrent)
+(require-package 'deferred)
+(require-package 'jedi)
+(require-package 'epc)
+(require-package 'flymake-cursor)
+(require-package 'flymake-python-pyflakes)
+(require-package 'flymake-ruby)
+(require-package 'robe)
+(require-package 'lusty-explorer)
+(require-package 'expand-region)
+(require-package 'ace-jump-mode)
+(require-package 'undo-tree)
 
-
-(defun has-package-not-installed ()
-  (loop for p in package-list
-        when (not (package-installed-p p)) do (return t)
-        finally (return nil)))
-
-(has-package-not-installed)
-
-(when (has-package-not-installed)
-  ;; check for new packages
-  (message "%s" "Emacs is now refreshing its package database...")
-  (package-refresh-contents)
-  (message "%s" " done.")
-  ;; install the missing packages
-  (dolist (p package-list)
-    (when (not (package-installed-p p))
-      (package-install p))))
-
-;;config files
+;;Config files
 (require 'key-bindings)
 
 ;;--LOAD MODES
