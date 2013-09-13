@@ -33,6 +33,7 @@
 (require-package 'lusty-explorer)
 (require-package 'expand-region)
 (require-package 'ace-jump-mode)
+(require-package 'key-chord)
 (require-package 'undo-tree)
 
 ;;Config files
