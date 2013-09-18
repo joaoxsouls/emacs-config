@@ -14,8 +14,14 @@
 (recentf-mode t)
 
 ;;auto pair brackets
-(require 'autopair)
-(autopair-global-mode)
+(electric-pair-mode t)
+(setq electric-pair-pairs '(
+                            (?\' . ?\')
+                            ) )
+
+;;matching braces
+(show-paren-mode 1)
+
 
 ;;line numbers
 (global-linum-mode 1)
