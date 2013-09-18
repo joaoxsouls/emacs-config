@@ -143,7 +143,9 @@
 
 ;;auto pair brackets
 (electric-pair-mode t)
-
+(setq electric-pair-pairs '(
+                            (?\' . ?\')
+                            ) )
 
 ;;matching braces
 (show-paren-mode 1)
