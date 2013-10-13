@@ -35,6 +35,7 @@
 (require-package 'ace-jump-mode)
 (require-package 'key-chord)
 (require-package 'undo-tree)
+(require-package 'multiple-cursors)
 
 ;;Config files
 (require 'key-bindings)
@@ -145,6 +146,7 @@
 (electric-pair-mode t)
 (setq electric-pair-pairs '(
                             (?\' . ?\')
+                            (?\" . ?\")
                             ) )
 
 ;;matching braces
