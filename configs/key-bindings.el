@@ -147,7 +147,7 @@
             (local-set-key (kbd "C-M-i") 'jedi:complete)
             (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
             (local-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
-            (local-set-key (kbd "C-c C-p") 'simp-project-find-file)
+            (local-set-key (kbd "C-c C-p") 'projectile-find-file)
             ))
 
 ;;html-mode hooks
@@ -187,7 +187,7 @@
 
 (global-set-key (kbd "C-x C-f") 'lusty-file-explorer)
 
-(global-set-key (kbd "C-C C-p") 'simp-project-find-file)
+(global-set-key (kbd "C-c C-p") 'projectile-find-file)
 
 (global-set-key (kbd "C-c <right>") 'next-multiframe-window)
 

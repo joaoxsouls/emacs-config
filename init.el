@@ -20,6 +20,7 @@
 (require-package 'puppet-mode)
 (require-package 'markdown-mode)
 (require-package 'go-mode)
+(require-package 'rust-mode)
 (require-package 'go-autocomplete)
 (require-package 'ctable)
 (require-package 'concurrent)
@@ -36,6 +37,7 @@
 (require-package 'key-chord)
 (require-package 'undo-tree)
 (require-package 'multiple-cursors)
+(require-package 'projectile)
 
 ;;Config files
 (require 'key-bindings)
@@ -132,11 +134,13 @@
 
 
 ;;simp
-(require 'simp)
-(simp-project-define
- '(:has (.git)
-        :ignore (.git)))
-(setq ido-enable-flex-matching t)
+;; (require 'simp)
+;; (simp-project-define
+;;  '(:has (.git)
+;;         :ignore (.git)))
+;; (setq ido-enable-flex-matching t)
+
+(projectile-global-mode)
 
 ;;make buffer names unique
 (require 'uniquify)
