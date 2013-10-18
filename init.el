@@ -14,10 +14,8 @@
 (recentf-mode t)
 
 ;;auto pair brackets
-(electric-pair-mode t)
-(setq electric-pair-pairs '(
-                            (?\' . ?\')
-                            ) )
+(require 'autopair)
+(autopair-global-mode)
 
 ;;matching braces
 (show-paren-mode 1)
