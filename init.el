@@ -30,6 +30,7 @@
 (require-package 'flymake-cursor)
 (require-package 'flymake-python-pyflakes)
 (require-package 'flymake-ruby)
+(require-package 'flymake-rust)
 (require-package 'robe)
 (require-package 'lusty-explorer)
 (require-package 'expand-region)
@@ -69,6 +70,10 @@
 (setq flymake-python-pyflakes-extra-arguments '("--ignore=E128,E501,F403"))
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 (eval-after-load 'flymake '(require 'flymake-cursor))
+
+;;rust flymake
+(require 'flymake-rust)
+(add-hook 'rust-mode-hook 'flymake-rust-load)
 
 ;;jedi
 (setq jedi:setup-keys t)
@@ -132,14 +137,6 @@
 (setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))
 (yas-global-mode 1)
 
-
-;;simp
-;; (require 'simp)
-;; (simp-project-define
-;;  '(:has (.git)
-;;         :ignore (.git)))
-;; (setq ido-enable-flex-matching t)
-
 (projectile-global-mode)
 
 ;;make buffer names unique
@@ -165,7 +162,6 @@
 (setq auto-save-default nil)
 
 ;;recent files
-(require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 
@@ -177,10 +173,11 @@
      (require 'tern-auto-complete)
      (tern-ac-setup)))
 
-;;startup msg
+;;disable startup msg
 (setq inhibit-startup-message t)
+(recentf-open-most-recent-file-1)
 (setq inhibit-startup-echo-area-message t)
-;;sasdads
+
 ;;line and column numbers
 (global-linum-mode 1)
 (setq linum-format " %d ")
