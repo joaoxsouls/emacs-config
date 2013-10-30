@@ -175,7 +175,6 @@
 
 ;;disable startup msg
 (setq inhibit-startup-message t)
-(recentf-open-most-recent-file-1)
 (setq inhibit-startup-echo-area-message t)
 
 ;;line and column numbers
