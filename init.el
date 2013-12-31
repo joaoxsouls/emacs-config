@@ -36,6 +36,7 @@
 (require-package 'expand-region)
 (require-package 'ace-jump-mode)
 (require-package 'key-chord)
+(require-package 'smartparens)
 (require-package 'undo-tree)
 (require-package 'multiple-cursors)
 (require-package 'projectile)
@@ -144,14 +145,16 @@
 (setq uniquify-buffer-name-style 'forward)
 
 ;;auto pair brackets
-(electric-pair-mode t)
-(setq electric-pair-pairs '(
-                            (?\' . ?\')
-                            (?\" . ?\")
-                            ) )
+;; (electric-pair-mode t)
+;; (setq electric-pair-pairs '(
+;;                             (?\' . ?\')
+;;                             (?\" . ?\")
+;;                             ) )
 
-;;matching braces
-(show-paren-mode 1)
+;; ;;matching braces
+;; (show-paren-mode 1)
+
+(smartparens-global-mode t)
 
 ;;mouse support on cli
 (xterm-mouse-mode)
@@ -222,9 +225,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
- '(custom-safe-themes (quote ("c17eba2c8a017959699591f0cbb4739afb3ebb891c0887e58ad95cf667859253" default)))
+ '(custom-safe-themes
+   (quote
+    ("c17eba2c8a017959699591f0cbb4739afb3ebb891c0887e58ad95cf667859253" default)))
  '(indent-tabs-mode nil)
  '(menu-bar-mode nil)
+ '(safe-local-variable-values (quote ((codiing . utf-8))))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(text-mode-hook (quote (text-mode-hook-identify)))

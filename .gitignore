@@ -3,3 +3,5 @@ ac-comphist.dat
 .DS_Store
 /elpa/
 *.elc
+projectile.cache
+projectile-bookmarks.eld
