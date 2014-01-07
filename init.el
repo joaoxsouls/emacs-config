@@ -206,17 +206,29 @@
 ;; revert buffer w/o asking
 (setq revert-without-query (quote (".*")))
 
+;;camel case
+(add-hook 'prog-mode-hook 'subword-mode)
+
+(defun buffer-is-makefile()
+  (if (or (string-equal (buffer-name) "Makefile")
+	  (string-equal mode-name "Makefile")
+	  (string-equal mode-name "BSDmakefile"))
+  t))
+
 ;;freaking whitespaces trail
 (defun cleanup-buffer-safe ()
   (interactive)
-  (untabify (point-min) (point-max))
+  (if (not (buffer-is-makefile))
+      (untabify (point-min) (point-max)))
   (delete-trailing-whitespace)
   (set-buffer-file-coding-system 'utf-8))
 
 (add-hook 'before-save-hook 'cleanup-buffer-safe)
 
-;;camel case
-(add-hook 'prog-mode-hook 'subword-mode)
+;;tabs instead of spaces except makefiles
+(add-hook 'find-file-hook '(lambda ()
+                             (if (not (buffer-is-makefile-or-changelog))
+                                 (setq indent-tabs-mode nil))))
 
 ;;disable menubar/scrollbar/tool-bar
 (custom-set-variables
@@ -228,7 +240,6 @@
  '(custom-safe-themes
    (quote
     ("c17eba2c8a017959699591f0cbb4739afb3ebb891c0887e58ad95cf667859253" default)))
- '(indent-tabs-mode nil)
  '(menu-bar-mode nil)
  '(safe-local-variable-values (quote ((codiing . utf-8))))
  '(scroll-bar-mode nil)
