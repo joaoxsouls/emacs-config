@@ -21,6 +21,7 @@
 (require-package 'markdown-mode)
 (require-package 'go-mode)
 (require-package 'rust-mode)
+(require-package 'jade-mode)
 (require-package 'go-autocomplete)
 (require-package 'ctable)
 (require-package 'concurrent)
@@ -211,8 +212,8 @@
 
 (defun buffer-is-makefile()
   (if (or (string-equal (buffer-name) "Makefile")
-	  (string-equal mode-name "Makefile")
-	  (string-equal mode-name "BSDmakefile"))
+          (string-equal mode-name "Makefile")
+          (string-equal mode-name "BSDmakefile"))
   t))
 
 ;;freaking whitespaces trail
@@ -226,9 +227,8 @@
 (add-hook 'before-save-hook 'cleanup-buffer-safe)
 
 ;;tabs instead of spaces except makefiles
-(add-hook 'find-file-hook '(lambda ()
-                             (if (not (buffer-is-makefile-or-changelog))
-                                 (setq indent-tabs-mode nil))))
+(add-hook 'makefile-mode-hook '(lambda ()
+                                 (setq indent-tabs-mode t)))
 
 ;;disable menubar/scrollbar/tool-bar
 (custom-set-variables
@@ -243,6 +243,7 @@
  '(menu-bar-mode nil)
  '(safe-local-variable-values (quote ((codiing . utf-8))))
  '(scroll-bar-mode nil)
+ '(setq indent-tabs-mode nil)
  '(show-paren-mode t)
  '(text-mode-hook (quote (text-mode-hook-identify)))
  '(tool-bar-mode nil))
