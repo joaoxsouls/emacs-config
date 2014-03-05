@@ -37,7 +37,6 @@
 (require-package 'expand-region)
 (require-package 'ace-jump-mode)
 (require-package 'key-chord)
-(require-package 'smartparens)
 (require-package 'undo-tree)
 (require-package 'multiple-cursors)
 (require-package 'projectile)
@@ -115,7 +114,7 @@
 (add-hook 'scss-mode-hook 'flymake-mode)
 
 ;;go
-(require 'go-autocomplete)
+;; (require 'go-autocomplete)
 (require 'go-flymake)
 
 ;;yasnippet
@@ -146,16 +145,16 @@
 (setq uniquify-buffer-name-style 'forward)
 
 ;;auto pair brackets
-;; (electric-pair-mode t)
-;; (setq electric-pair-pairs '(
-;;                             (?\' . ?\')
-;;                             (?\" . ?\")
-;;                             ) )
+(electric-pair-mode t)
+(setq electric-pair-pairs '(
+                            (?\' . ?\')
+                            (?\" . ?\")
+                            ) )
 
 ;; ;;matching braces
 ;; (show-paren-mode 1)
 
-(smartparens-global-mode t)
+;; (smartparens-global-mode t)
 
 ;;mouse support on cli
 (xterm-mouse-mode)
