@@ -20,9 +20,9 @@
 (require-package 'puppet-mode)
 (require-package 'markdown-mode)
 (require-package 'go-mode)
+(require-package 'go-autocomplete)
 (require-package 'rust-mode)
 (require-package 'jade-mode)
-(require-package 'go-autocomplete)
 (require-package 'ctable)
 (require-package 'concurrent)
 (require-package 'deferred)
@@ -32,6 +32,7 @@
 (require-package 'flymake-python-pyflakes)
 (require-package 'flymake-ruby)
 (require-package 'flymake-rust)
+(require-package 'flymake-go)
 (require-package 'robe)
 (require-package 'lusty-explorer)
 (require-package 'expand-region)
@@ -114,8 +115,13 @@
 (add-hook 'scss-mode-hook 'flymake-mode)
 
 ;;go
-;; (require 'go-autocomplete)
-(require 'go-flymake)
+(require 'go-autocomplete)
+(eval-after-load "go-mode"
+  '(require 'flymake-go))
+(setq gofmt-command "goimports")
+(add-to-list 'load-path "~/.go/misc/emacs/")
+(require 'go-mode-load)
+(add-hook 'before-save-hook 'gofmt-before-save)
 
 ;;yasnippet
 (setq yas-snippet-dirs (concat emacs-directory "modes/yasnippet/snippets/"))
@@ -251,7 +257,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(flymake-errline ((t (:foreground "red" :weight bold))))
+ '(flymake-warnline ((t (:foreground "gold" :weight bold)))))
 
 ;;keychord mode
 
