@@ -4,10 +4,9 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/modes/themes")
 (setq emacs-directory "~/.emacs.d/")
 ;;--REQUIRES
-
+(require 'benchmark-init)
 ;;--PACKAGE MANAGER
 (require 'init-elpa)
-
 (require-package 'smex)
 (require-package 'auto-complete)
 (require-package 'yasnippet)
@@ -28,11 +27,6 @@
 (require-package 'deferred)
 (require-package 'jedi)
 (require-package 'epc)
-(require-package 'flymake-cursor)
-(require-package 'flymake-python-pyflakes)
-(require-package 'flymake-ruby)
-(require-package 'flymake-rust)
-(require-package 'flymake-go)
 (require-package 'robe)
 (require-package 'lusty-explorer)
 (require-package 'expand-region)
@@ -41,6 +35,7 @@
 (require-package 'undo-tree)
 (require-package 'multiple-cursors)
 (require-package 'projectile)
+(require-package 'ido-vertical-mode)
 
 ;;Config files
 (require 'key-bindings)
@@ -61,33 +56,22 @@
                            ac-source-words-in-same-mode-buffers
                            ))
 
+;;ido vertical
+(ido-vertical-mode 1)
+
 ;;ace-jump mode
 (setq ace-jump-mode-gray-background nil)
 
 ;;undo-tree-mode
 (global-undo-tree-mode)
 
-;;python pylint pep8
-(setq flymake-python-pyflakes-executable "flake8")
-(setq flymake-python-pyflakes-extra-arguments '("--ignore=E128,E501,F403"))
-(add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
-(eval-after-load 'flymake '(require 'flymake-cursor))
-
-;;rust flymake
-(require 'flymake-rust)
-(add-hook 'rust-mode-hook 'flymake-rust-load)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;jedi
 (setq jedi:setup-keys t)
 (autoload 'jedi:setup "jedi" nil t)
 (setq jedi:complete-on-dot t)
 (add-hook 'python-mode-hook 'jedi:setup)
-
-;;ruby flymake
-(require 'flymake-ruby)
-(add-hook 'ruby-mode-hook 'flymake-ruby-load)
-(add-hook 'ruby-mode-hook 'robe-mode)
-(push 'ac-source-robe ac-sources)
 
 ;;copy text from emacs to external app
 (require 'pbcopy)
@@ -111,13 +95,9 @@
 ;;sass, css
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 (setq scss-compile-at-save nil)
-(add-hook 'css-mode-hook 'flymake-mode)
-(add-hook 'scss-mode-hook 'flymake-mode)
 
 ;;go
 (require 'go-autocomplete)
-(eval-after-load "go-mode"
-  '(require 'flymake-go))
 (setq gofmt-command "goimports")
 (add-to-list 'load-path "~/.go/misc/emacs/")
 (require 'go-mode-load)
@@ -174,13 +154,6 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 
-;;ternjs javascript autocomplete
-(autoload 'tern-mode "tern.el" nil t)
-(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
-(eval-after-load 'tern
-  '(progn
-     (require 'tern-auto-complete)
-     (tern-ac-setup)))
 
 ;;disable startup msg
 (setq inhibit-startup-message t)
@@ -244,11 +217,11 @@
  '(blink-cursor-mode nil)
  '(custom-safe-themes
    (quote
-    ("c17eba2c8a017959699591f0cbb4739afb3ebb891c0887e58ad95cf667859253" default)))
+    ("5e2ade7f65d9162ca2ba806908049fb37d602d59d90dc3a08463e1a042f177ae" "9ddd48aea45477dbfa9207e34d2935aa57a8fa9290c33a437dc638bd0e952aea" "c17eba2c8a017959699591f0cbb4739afb3ebb891c0887e58ad95cf667859253" default)))
  '(menu-bar-mode nil)
  '(safe-local-variable-values (quote ((codiing . utf-8))))
  '(scroll-bar-mode nil)
- '(setq indent-tabs-mode nil)
+ '(setq indent-tabs-mode)
  '(show-paren-mode t)
  '(text-mode-hook (quote (text-mode-hook-identify)))
  '(tool-bar-mode nil))
