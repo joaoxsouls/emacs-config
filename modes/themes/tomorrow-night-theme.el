@@ -17,15 +17,15 @@
       (current-line "#282a2e")
       (selection "#373b41")
       (foreground "#c5c8c6")
-      (comment "#969896")
+      (comment "#666966")
       (cursor "#aeafad")
-      (red "#cc6666")
+      (red "#F92672")
       (orange "#de935f")
-      (yellow "#f0c674")
+      (yellow "#DBDB04")
       (green "#b5bd68")
-      (aqua "#8abeb7")
+      (aqua "#4FB090")
       (blue "#81a2be")
-      (purple "#b294bb"))
+      (purple "#81638A"))
 
   (custom-theme-set-faces
    'tomorrow-night
@@ -56,7 +56,7 @@
    `(font-lock-function-name-face ((t (:foreground ,blue))))
    `(font-lock-keyword-face ((t (:foreground ,purple))))
    `(font-lock-string-face ((t (:foreground ,green))))
-   `(font-lock-type-face ((t (:foreground ,yellow))))
+   `(font-lock-type-face ((t (:foreground ,red))))
    `(font-lock-variable-name-face ((t (:foreground ,orange))))
    `(font-lock-warning-face ((t (:foreground ,red))))
 

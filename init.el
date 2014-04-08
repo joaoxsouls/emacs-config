@@ -1,12 +1,13 @@
-;;--PATHS
+
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
 (add-to-list 'custom-theme-load-path "~/.emacs.d/modes/themes")
 (setq emacs-directory "~/.emacs.d/")
 ;;--REQUIRES
-(require 'benchmark-init)
+
 ;;--PACKAGE MANAGER
 (require 'init-elpa)
+
 (require-package 'smex)
 (require-package 'auto-complete)
 (require-package 'yasnippet)
@@ -126,6 +127,7 @@
 
 (projectile-global-mode)
 
+
 ;;make buffer names unique
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
@@ -163,8 +165,11 @@
 (global-linum-mode 1)
 (setq linum-format " %d ")
 (column-number-mode 1)
+;;buffer size
+(size-indication-mode t)
+
 ;;theme
-(load-theme 'most-monokai-cli t)
+(load-theme 'tomorrow-night t)
 
 ;;mac os x option key as meta
 (set-keyboard-coding-system nil)
@@ -214,10 +219,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#1d1f21" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#b294bb" "#81a2be" "#c5c8c6"])
+ '(ansi-term-color-vector
+   [unspecified "#1d1f21" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#b294bb" "#81a2be" "#c5c8c6"])
  '(blink-cursor-mode nil)
  '(custom-safe-themes
    (quote
-    ("5e2ade7f65d9162ca2ba806908049fb37d602d59d90dc3a08463e1a042f177ae" "9ddd48aea45477dbfa9207e34d2935aa57a8fa9290c33a437dc638bd0e952aea" "c17eba2c8a017959699591f0cbb4739afb3ebb891c0887e58ad95cf667859253" default)))
+    ("2f1998c984911032deae4b07575a22062eee053ea9f8609b700bb510a2e7c053" "936ad15ac8a8f1c79c1b9d6c27ef106bbdce15840e548eda608d43a0666c2a66" "55a34c5a2eae71e9d02cd3143aa6a2fb4af6ca146079719be191477e84e03d8a" "5e2ade7f65d9162ca2ba806908049fb37d602d59d90dc3a08463e1a042f177ae" "9ddd48aea45477dbfa9207e34d2935aa57a8fa9290c33a437dc638bd0e952aea" "c17eba2c8a017959699591f0cbb4739afb3ebb891c0887e58ad95cf667859253" default)))
  '(menu-bar-mode nil)
  '(safe-local-variable-values (quote ((codiing . utf-8))))
  '(scroll-bar-mode nil)
@@ -277,5 +286,5 @@
       (set-cursor-color "#ffffff")
       (set-frame-width (selected-frame) 130)
       (set-frame-height (selected-frame) 40)
-      (load-theme 'most-monokai-gui t))
+      )
   )
