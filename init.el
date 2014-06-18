@@ -13,6 +13,9 @@
 
 (recentf-mode t)
 
+(require 'ido-vertical-mode)
+(ido-vertical-mode t)
+
 ;;auto pair brackets
 (require 'autopair)
 (autopair-global-mode)
