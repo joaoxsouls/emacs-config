@@ -53,10 +53,18 @@
 ;;disable auto save
 (setq auto-save-default nil)
 
+(defun buffer-is-makefile()
+  (if (and (stringp mode-name)
+           (or (string-equal (buffer-name) "Makefile")
+               (string-equal mode-name "Makefile")
+               (string-equal mode-name "BSDmakefile")))
+  t))
+
 ;;freaking whitespaces trail
 (defun cleanup-buffer-safe ()
   (interactive)
-  (untabify (point-min) (point-max))
+  (if (not (buffer-is-makefile))
+      (untabify (point-min) (point-max)))
   (delete-trailing-whitespace)
   (set-buffer-file-coding-system 'utf-8))
 
