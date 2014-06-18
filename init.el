@@ -82,11 +82,6 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
-;;coffee-mode
-;; (defun coffee-custom ()
-;;   "coffee-mode-hook"
-;;   (set (make-local-variable 'tab-width) 2))
-
 (autoload 'coffee-mode "coffee-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
 (add-hook 'coffee-mode-hook
@@ -194,9 +189,10 @@
 (add-hook 'prog-mode-hook 'subword-mode)
 
 (defun buffer-is-makefile()
-  (if (or (string-equal (buffer-name) "Makefile")
-          (string-equal mode-name "Makefile")
-          (string-equal mode-name "BSDmakefile"))
+  (if (and (stringp mode-name)
+           (or (string-equal (buffer-name) "Makefile")
+               (string-equal mode-name "Makefile")
+               (string-equal mode-name "BSDmakefile")))
   t))
 
 ;;freaking whitespaces trail
