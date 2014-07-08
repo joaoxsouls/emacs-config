@@ -67,6 +67,8 @@
 (global-undo-tree-mode)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(setq flycheck-highlighting-mode 'lines)
+(setq flycheck-rust-library-path '("../target/deps"))
 
 ;;jedi
 (setq jedi:setup-keys t)
@@ -97,7 +99,7 @@
 (setq gofmt-command "goimports")
 (add-to-list 'load-path "~/.go/misc/emacs/")
 (require 'go-mode-load)
-(add-hook 'before-save-hook 'gofmt-before-save)
+;; (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;;yasnippet
 (setq yas-snippet-dirs (concat emacs-directory "modes/yasnippet/snippets/"))
@@ -235,8 +237,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(flymake-errline ((t (:foreground "red" :weight bold))))
- '(flymake-warnline ((t (:foreground "gold" :weight bold)))))
+ '(flycheck-error ((t (:foreground "red" :weight bold))))
+ '(flycheck-warning ((t (:foreground "gold" :weight bold)))))
 
 ;;keychord mode
 
