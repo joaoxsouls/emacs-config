@@ -9,9 +9,10 @@
 (require 'init-elpa)
 
 (require-package 'smex)
-(require-package 'auto-complete)
 (require-package 'yasnippet)
+(require-package 'company)
 (require-package 'js2-mode)
+(require-package 'anaconda-mode)
 (require-package 'coffee-mode)
 (require-package 'css-mode)
 (require-package 'scss-mode)
@@ -20,13 +21,13 @@
 (require-package 'puppet-mode)
 (require-package 'markdown-mode)
 (require-package 'go-mode)
-(require-package 'go-autocomplete)
+(require-package 'company-go)
 (require-package 'rust-mode)
 (require-package 'jade-mode)
 (require-package 'ctable)
 (require-package 'concurrent)
 (require-package 'deferred)
-(require-package 'jedi)
+(require-package 'anaconda-mode)
 (require-package 'epc)
 (require-package 'robe)
 (require-package 'lusty-explorer)
@@ -45,17 +46,11 @@
 (require 'smex)
 (smex-initialize)
 
-;;autocomplete mode
-(require 'auto-complete)
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories (concat emacs-directory "modes/autocomplete/dict"))
-(ac-config-default)
-(setq-default ac-sources '(
-                           ac-source-yasnippet
-                           ac-source-abbrev
-                           ac-source-dictionary
-                           ac-source-words-in-same-mode-buffers
-                           ))
+;;company
+(setq company-dabbrev-code-ignore-case t)
+(setq company-dabbrev-downcase nil)
+(setq company-idle-delay 0.5)
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;;ido vertical
 (ido-vertical-mode 1)
@@ -71,10 +66,7 @@
 (setq flycheck-rust-library-path '("../target/deps"))
 
 ;;jedi
-(setq jedi:setup-keys t)
-(autoload 'jedi:setup "jedi" nil t)
-(setq jedi:complete-on-dot t)
-(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook 'anaconda-mode)
 
 ;;copy text from emacs to external app
 (require 'pbcopy)
@@ -95,16 +87,14 @@
 (setq scss-compile-at-save nil)
 
 ;;go
-(require 'go-autocomplete)
+(require 'company-go)
 (setq gofmt-command "goimports")
 (add-to-list 'load-path "~/.go/misc/emacs/")
-(require 'go-mode-load)
+;; (require 'go-mode-load)
 ;; (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;;yasnippet
 (setq yas-snippet-dirs (concat emacs-directory "modes/yasnippet/snippets/"))
-(define-key popup-menu-keymap (kbd "TAB") 'popup-select)
-(define-key popup-menu-keymap (kbd "<tab>") 'popup-select)
 (defun yas-popup-isearch-prompt (prompt choices &optional display-fn)
   (when (featurep 'popup)
     (popup-menu*
@@ -213,18 +203,9 @@
 
 ;;disable menubar/scrollbar/tool-bar
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#1d1f21" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#b294bb" "#81a2be" "#c5c8c6"])
- '(ansi-term-color-vector
-   [unspecified "#1d1f21" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#b294bb" "#81a2be" "#c5c8c6"])
+ '(ansi-color-names-vector ["#1d1f21" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#b294bb" "#81a2be" "#c5c8c6"])
+ '(ansi-term-color-vector [unspecified "#1d1f21" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#b294bb" "#81a2be" "#c5c8c6"])
  '(blink-cursor-mode nil)
- '(custom-safe-themes
-   (quote
-    ("2f1998c984911032deae4b07575a22062eee053ea9f8609b700bb510a2e7c053" "936ad15ac8a8f1c79c1b9d6c27ef106bbdce15840e548eda608d43a0666c2a66" "55a34c5a2eae71e9d02cd3143aa6a2fb4af6ca146079719be191477e84e03d8a" "5e2ade7f65d9162ca2ba806908049fb37d602d59d90dc3a08463e1a042f177ae" "9ddd48aea45477dbfa9207e34d2935aa57a8fa9290c33a437dc638bd0e952aea" "c17eba2c8a017959699591f0cbb4739afb3ebb891c0887e58ad95cf667859253" default)))
  '(menu-bar-mode nil)
  '(safe-local-variable-values (quote ((codiing . utf-8))))
  '(scroll-bar-mode nil)

@@ -114,7 +114,19 @@
    `(font-latex-sedate-face ((t (:foreground ,aqua))))
    `(font-latex-string-face ((t (:foreground ,yellow))))
    `(font-latex-verbatim-face ((t (:foreground ,orange))))
-   `(font-latex-warning-face ((t (:foreground ,red)))))
+   `(font-latex-warning-face ((t (:foreground ,red))))
+
+   ;;flycheck
+
+   '(flycheck-error ((t (:foreground "red" :weight bold))))
+   '(flycheck-warning ((t (:foreground "gold" :weight bold))))
+
+   ;;company
+
+   `(company-tooltip ((t (:background ,background :foreground ,foreground))))
+   `(company-scrollbar-bg ((t (:background ,background))))
+   `(company-tooltip-selection ((t (:background ,selection))))
+   `(company-scrollbar-fg ((t (:background ,background)))))
 
   (custom-theme-set-variables
    'tomorrow-night

@@ -18,6 +18,15 @@
 (global-set-key (kbd "C-c C-b") 'open-line-below)
 (global-set-key (kbd "C-c C-a") 'open-line-above)
 
+(defun indent-or-complete ()
+  (interactive)
+  (if (looking-at "\\_>")
+      (company-complete)
+    (indent-according-to-mode)))
+
+(global-set-key (kbd "M-TAB") 'company-manual-begin)
+(global-set-key (kbd "TAB") 'indent-or-complete)
+
 ;;rename files
 (defun rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
@@ -143,9 +152,8 @@
 ;;hook functions
 (add-hook 'python-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-d") 'jedi:goto-definition)
-            (local-set-key (kbd "C-f") 'jedi:goto-definition-pop-marker)
-            (local-set-key (kbd "C-M-i") 'jedi:complete)
+            (local-set-key (kbd "C-d") 'anaconda-mode-goto)
+            (local-set-key (kbd "C-f") 'anaconda-nav-pop-marker)
             (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
             (local-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
             (local-set-key (kbd "C-c C-p") 'projectile-find-file)
