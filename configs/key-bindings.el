@@ -223,4 +223,6 @@
 
 (global-set-key (kbd "M-d") 'comment-or-uncomment-region-or-line)
 
+(global-set-key (kbd "C-e") 'mark-word)
+
 (provide 'key-bindings)
