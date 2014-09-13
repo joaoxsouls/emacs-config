@@ -25,7 +25,6 @@
 (require-package 'ctable)
 (require-package 'concurrent)
 (require-package 'deferred)
-(require-package 'anaconda-mode)
 (require-package 'epc)
 (require-package 'robe)
 (require-package 'lusty-explorer)
@@ -49,7 +48,8 @@
 (setq company-dabbrev-downcase nil)
 (setq company-idle-delay 0.5)
 (add-hook 'after-init-hook 'global-company-mode)
-
+(set (make-local-variable 'company-backends) '(company-tern))
+;; (add-to-list 'company-backends 'company-tern)
 ;;ido vertical
 (ido-vertical-mode 1)
 
@@ -73,6 +73,9 @@
 ;;js2mode fork
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-hook 'js-mode-hook (lambda ()
+  (set (make-local-variable 'company-backends) '(company-tern))
+  (company-mode)))
 
 (autoload 'coffee-mode "coffee-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
@@ -88,6 +91,9 @@
 (require 'company-go)
 (setq gofmt-command "goimports")
 (add-to-list 'load-path "~/.go/misc/emacs/")
+(add-hook 'go-mode-hook (lambda ()
+  (set (make-local-variable 'company-backends) '(company-go))
+  (company-mode)))
 ;; (require 'go-mode-load)
 ;; (add-hook 'before-save-hook 'gofmt-before-save)
 
