@@ -6,6 +6,8 @@
 ;;--REQUIRES
 
 ;;--PACKAGE MANAGER
+(require 'init-utils)
+(require 'init-site-lisp) 
 (require 'init-elpa)
 
 (require-package 'smex)
