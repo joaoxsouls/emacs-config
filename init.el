@@ -12,6 +12,7 @@
 (require-package 'yasnippet)
 (require-package 'company)
 (require-package 'js2-mode)
+(require-package 'flycheck)
 (require-package 'anaconda-mode)
 (require-package 'css-mode)
 (require-package 'scss-mode)
@@ -35,6 +36,7 @@
 (require-package 'multiple-cursors)
 (require-package 'projectile)
 (require-package 'ido-vertical-mode)
+(require-package 'ag)
 
 ;;Config files
 (require 'key-bindings)
