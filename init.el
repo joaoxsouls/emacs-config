@@ -4,21 +4,21 @@
 
 (require 'key-bindings)
 
-(require 'pbcopy)
+;;packages
 
-(require 'smex)
+(require 'init-utils)
+(require 'init-site-lisp) 
+(require 'init-elpa)
+
+(require-package 'smex)
+(require-package 'lusty-explorer)
+(require-package 'ido-vertical-mode)
+(require-package 'ace-jump-mode)
+
 (smex-initialize)
-
-(require 'lusty-explorer)
-
 (recentf-mode t)
-
-(require 'ido-vertical-mode)
 (ido-vertical-mode t)
-
-;;auto pair brackets
-(require 'autopair)
-(autopair-global-mode)
+(electric-pair-mode t)
 
 ;;matching braces
 (show-paren-mode 1)
@@ -29,11 +29,6 @@
 (setq linum-format " %d ")
 (column-number-mode 1)
 
-;;ace-jump-mode
-(require 'ace-jump-mode)
-
-;;matching braces
-(show-paren-mode 1)
 
 ;;shift select up
 (if (equal "xterm-256color" (tty-type))
@@ -78,10 +73,6 @@
 
 ;;disable menubar/scrollbar/tool-bar
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
  '(custom-safe-themes (quote ("c17eba2c8a017959699591f0cbb4739afb3ebb891c0887e58ad95cf667859253" default)))
  '(indent-tabs-mode nil)
