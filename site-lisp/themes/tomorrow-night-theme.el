@@ -64,7 +64,7 @@
    `(hl-line ((t (:background ,current-line))))
 
    ;; linum-mode
-   `(linum ((t (:background ,current-line :foreground ,foreground))))
+   `(linum ((t (:background ,background :foreground ,foreground))))
 
    ;; org-mode
    `(org-date ((t (:foreground ,purple))))
@@ -118,7 +118,7 @@
 
    ;;flycheck
 
-   '(flycheck-error ((t (:foreground "red" :weight bold))))
+   '(flycheck-error ((t (:foreground "#DE1E1B" :weight bold))))
    '(flycheck-warning ((t (:foreground "gold" :weight bold))))
 
    ;;company
@@ -127,6 +127,12 @@
    `(company-scrollbar-bg ((t (:background ,background))))
    `(company-tooltip-selection ((t (:background ,selection))))
    `(company-scrollbar-fg ((t (:background ,background)))))
+
+  ;;flycheck
+
+   '(flycheck-error ((t (:foreground "red" :weight bold))))
+   '(flycheck-warning ((t (:foreground "gold" :weight bold))))
+
 
   (custom-theme-set-variables
    'tomorrow-night
