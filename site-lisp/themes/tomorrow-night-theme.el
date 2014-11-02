@@ -144,6 +144,18 @@
      ;; black, red, green, yellow, blue, magenta, cyan, white
      [unspecified ,background ,red ,green ,yellow ,blue ,purple ,blue ,foreground])))
 
+  ;;magit colors
+
+  (eval-after-load 'magit
+    '(progn
+       (set-face-foreground 'magit-diff-add "green")
+       (set-face-background 'magit-diff-add "#1d1f21")
+       (set-face-foreground 'magit-diff-del "red")
+       (set-face-background 'magit-diff-del "#1d1f21")
+       (unless window-system
+         (set-face-background 'magit-item-highlight "black"))))
+
+
 (provide-theme 'tomorrow-night)
 
 ;;; tomorrow-night-theme.el ends here
