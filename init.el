@@ -34,9 +34,6 @@
 ;;ido vertical
 (ido-vertical-mode 1)
 
-;;ace-jump mode
-(setq ace-jump-mode-gray-background nil)
-
 ;;undo-tree-mode
 (global-undo-tree-mode)
 
@@ -48,6 +45,9 @@
 (require 'pbcopy)
 (turn-on-pbcopy)
 
+;;no more shift select
+(setq shift-select-mode t)
+
 ;;yasnippet
 (add-to-list 'load-path (file-expand-wildcards (concat emacs-directory "elpa/yasnippet-*/snippets")))
 (require 'yasnippet)
@@ -55,7 +55,6 @@
 (yas-global-mode 1)
 
 (projectile-global-mode)
-
 
 ;;make buffer names unique
 (require 'uniquify)
@@ -65,10 +64,6 @@
 (electric-pair-mode t)
 (show-paren-mode 1)
 
-
-;;mouse support on cli
-(xterm-mouse-mode)
-
 ;;disable backup files
 (setq backup-inhibited t)
 ;;disable auto save
@@ -77,7 +72,6 @@
 ;;recent files
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
-
 
 ;;disable startup msg
 (setq inhibit-startup-message t)
@@ -92,7 +86,6 @@
 
 ;;mac os x option key as meta
 (set-keyboard-coding-system nil)
-
 
 ;; No yes-or-no, y-or-n instead
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -131,6 +124,10 @@
 (add-hook 'makefile-mode-hook '(lambda ()
                                  (setq indent-tabs-mode t)))
 (setq-default indent-tabs-mode nil)
+
+;;popwin mode
+(require 'popwin)
+(popwin-mode 1)
 
 ;;----------------------------------------------------------------------------
 ;; Language configs

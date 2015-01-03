@@ -28,5 +28,6 @@
 (require-package 'projectile)
 (require-package 'ido-vertical-mode)
 (require-package 'ag)
+(require-package 'popwin)
 
 (provide 'packages)

@@ -70,7 +70,7 @@
     (if (region-active-p)
         (comment-or-uncomment-region (region-beginning) (region-end))
       (comment-or-uncomment-region (line-beginning-position) (line-end-position)))))
-(global-set-key (kbd "C-d") 'comment-or-uncomment-region-or-line)
+(global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
 
 ;;copy region or line
 (defun copy-region-or-whole-line (arg)
@@ -188,10 +188,6 @@
 
 (global-set-key (kbd "C-<down>") 'end-of-buffer)
 
-(global-set-key (kbd "C-x x") 'next-multiframe-window)
-
-(global-set-key (kbd "C-x w") 'delete-window)
-
 (global-set-key (kbd "C-z") 'undo-only)
 
 (global-set-key (kbd "C-x C-f") 'lusty-file-explorer)
@@ -208,31 +204,19 @@
 
 (global-set-key (kbd "C-<left>") 'beginning-of-visual-line)
 
-(global-set-key (kbd "C-x u") 'undo-only)
-
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
-
-(global-set-key (kbd "s-d") 'hs-toggle-hiding)
 
 (global-set-key (kbd "s-r") 'replace-string)
 
 (global-set-key (kbd "s-u") 'lusty-file-explorer)
 
-(global-set-key (kbd "C-n") 'dirtree-show)
-
 (global-set-key (kbd "C-x b") 'lusty-buffer-explorer)
 
 (global-set-key (kbd "C-x C-b") 'lusty-buffer-explorer)
 
-(global-set-key (kbd "C-c s") 'desktop-save)
+(global-set-key (kbd "C-M-<right>") 'forward-sexp)
 
-(global-set-key (kbd "C-c l") 'desktop-change-dir)
-
-(global-set-key (kbd "C-c C-s") 'split-window-horizontally)
-
-(global-set-key (kbd "C-M-<down>") 'scroll-up-command)
-
-(global-set-key (kbd "C-M-<up>") 'scroll-down-command)
+(global-set-key (kbd "C-M-<left>") 'backward-sexp)
 
 (global-set-key (kbd "s-+") 'text-scale-increase)
 
@@ -244,22 +228,21 @@
 
 (global-set-key (kbd "M-SPC") 'ace-jump-line-mode)
 
+(global-set-key (kbd "<return>") 'newline-and-indent)
+
+(global-set-key (kbd "C-b") 'set-mark-command)
+
 (global-set-key (kbd "C-@") 'ace-jump-mode)
 
 (global-set-key (kbd "C-SPC") 'ace-jump-mode)
 
-(global-set-key (kbd "C-e") 'er/expand-region)
+(global-set-key (kbd "M-1") 'er/contract-region)
 
-(global-set-key (kbd "C-^") 'mc/mark-next-like-this)
+(global-set-key (kbd "M-2") 'er/expand-region)
 
-(global-set-key (kbd "C-+") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-n") 'mc/mark-next-like-this)
 
-(global-set-key (kbd "C-_") 'mc/mark-previous-like-this)
-
-(global-set-key (kbd "C--") 'mc/mark-previous-like-this)
-
-(global-set-key (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "C-p") 'mc/mark-previous-like-this)
 
 (global-set-key (kbd "M-d") 'comment-or-uncomment-region-or-line)
-
 (provide 'key-bindings)
