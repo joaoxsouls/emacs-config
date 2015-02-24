@@ -29,5 +29,8 @@
 (require-package 'ido-vertical-mode)
 (require-package 'ag)
 (require-package 'popwin)
+(require-package 'toml-mode)
+(require-package 'elixir-mode)
+(require-package 'elixir-yasnippets)
 
 (provide 'packages)
