@@ -31,6 +31,8 @@
 (require-package 'popwin)
 (require-package 'toml-mode)
 (require-package 'elixir-mode)
+(require-package 'alchemist)
+(require-package 'magit)
 (require-package 'elixir-yasnippets)
 
 (provide 'packages)
