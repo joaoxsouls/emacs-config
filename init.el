@@ -65,7 +65,10 @@
 (show-paren-mode 1)
 
 ;;disable backup files
-(setq backup-inhibited t)
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 ;;disable auto save
 (setq auto-save-default nil)
 
@@ -165,5 +168,8 @@
                   (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
                   (jsx-mode "<script +\\(type=\"text/jsx\"\\|language=\"jsx\"\\)[^>]*>" "</script>")
                   (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
-(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
+(setq mweb-filename-extensions '("php" "htm" "html" "eex" "ctp" "phtml" "php4" "php5"))
 (multi-web-global-mode 1)
+
+;;elixir-mode
+(add-hook 'elixir-mode-hook 'alchemist-mode)
