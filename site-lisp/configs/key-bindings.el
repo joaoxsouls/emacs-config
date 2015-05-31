@@ -171,13 +171,18 @@
             ))
 
 
-;;elixir-mode-hooks
+;;elixir-mode and erlang-mode hooks
 (add-hook 'elixir-mode-hook
           (lambda ()
             (local-set-key (kbd "C-d") 'alchemist-goto-definition-at-point)
             (local-set-key (kbd "C-f") 'alchemist-goto-jump-back)
             ))
 
+(add-hook 'erlang-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-d") 'alchemist-goto-definition-at-point)
+            (local-set-key (kbd "C-f") 'alchemist-goto-jump-back)
+            ))
 ;;GLOBAL KEYS
 
 (global-set-key (kbd "M-n") 'backward-paragraph)

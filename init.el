@@ -171,5 +171,6 @@
 (setq mweb-filename-extensions '("php" "htm" "html" "eex" "ctp" "phtml" "php4" "php5"))
 (multi-web-global-mode 1)
 
-;;elixir-mode
+;;elixir-mode and erlang-mode
 (add-hook 'elixir-mode-hook 'alchemist-mode)
+(add-hook 'erlang-mode-hook 'alchemist-mode)
