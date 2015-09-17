@@ -40,6 +40,7 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq flycheck-highlighting-mode 'lines)
 (setq flycheck-rust-library-path '("../target/deps"))
+(add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
 
 ;;pbcopy
 (require 'pbcopy)
@@ -49,7 +50,7 @@
 (setq shift-select-mode t)
 
 ;;yasnippet
-(add-to-list 'load-path (file-expand-wildcards (concat emacs-directory "elpa/yasnippet-*/snippets")))
+;; (add-to-list 'load-path (file-expand-wildcards (concat emacs-directory "elpa/yasnippet-*/snippets")))
 (require 'yasnippet)
 (setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))
 (yas-global-mode 1)
