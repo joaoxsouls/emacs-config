@@ -175,3 +175,10 @@
 ;;elixir-mode and erlang-mode
 (add-hook 'elixir-mode-hook 'alchemist-mode)
 (add-hook 'erlang-mode-hook 'alchemist-mode)
+
+;;rust
+(setq racer-cmd "/Users/jxs/dev/jxs/racer/target/release/racer")
+(setq racer-rust-src-path "/Users/jxs/dev/jxs/racer/target/src/rustc-1.3.0/src")
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)

@@ -35,5 +35,6 @@
 (require-package 'alchemist)
 (require-package 'magit)
 (require-package 'elixir-yasnippets)
+(require-package 'racer)
 
 (provide 'packages)
