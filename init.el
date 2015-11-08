@@ -31,8 +31,13 @@
 (set (make-local-variable 'company-backends) '(company-tern))
 (add-to-list 'company-backends 'company-yasnippet)
 
-;;ido vertical
+;;ido
 (ido-vertical-mode 1)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
 
 ;;undo-tree-mode
 (global-undo-tree-mode)

@@ -1,3 +1,4 @@
+(require-package 'flx-ido)
 (require-package 'smex)
 (require-package 'yasnippet)
 (require-package 'company)
@@ -20,7 +21,6 @@
 (require-package 'deferred)
 (require-package 'epc)
 (require-package 'robe)
-(require-package 'lusty-explorer)
 (require-package 'expand-region)
 (require-package 'ace-jump-mode)
 (require-package 'undo-tree)

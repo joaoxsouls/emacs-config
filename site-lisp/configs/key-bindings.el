@@ -203,7 +203,7 @@
 
 (global-set-key (kbd "C-z") 'undo-only)
 
-(global-set-key (kbd "C-x C-f") 'lusty-file-explorer)
+(global-set-key (kbd "C-x C-f") 'ido-find-file)
 
 (global-set-key (kbd "C-c C-p") 'projectile-find-file)
 
@@ -221,11 +221,11 @@
 
 (global-set-key (kbd "s-r") 'replace-string)
 
-(global-set-key (kbd "s-u") 'lusty-file-explorer)
+(global-set-key (kbd "s-u") 'ido-find-file)
 
-(global-set-key (kbd "C-x b") 'lusty-buffer-explorer)
+(global-set-key (kbd "C-x b") 'ido-switch-buffer)
 
-(global-set-key (kbd "C-x C-b") 'lusty-buffer-explorer)
+(global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
 
 (global-set-key (kbd "C-M-<right>") 'forward-sexp)
 
