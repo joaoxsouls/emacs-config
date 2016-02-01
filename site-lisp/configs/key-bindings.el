@@ -239,15 +239,15 @@
 
 (global-set-key (kbd "M-.") 'mc/mark-all-like-this)
 
-(global-set-key (kbd "M-SPC") 'ace-jump-line-mode)
+(global-set-key (kbd "M-SPC") 'avy-goto-line)
 
 (global-set-key (kbd "<return>") 'newline-and-indent)
 
 (global-set-key (kbd "C-b") 'set-mark-command)
 
-(global-set-key (kbd "C-@") 'ace-jump-mode)
+(global-set-key (kbd "C-@") 'avy-goto-word-or-subword-1)
 
-(global-set-key (kbd "C-SPC") 'ace-jump-mode)
+(global-set-key (kbd "C-SPC") 'avy-goto-word-or-subword-1)
 
 (global-set-key (kbd "M-1") 'er/contract-region)
 

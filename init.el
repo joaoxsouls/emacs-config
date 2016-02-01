@@ -111,6 +111,10 @@
 ;;camel case
 (add-hook 'prog-mode-hook 'subword-mode)
 
+;;avy-mode
+(setq avy-keys (number-sequence ?a ?z))
+
+
 (defun buffer-is-tabbed()
   (if (and (stringp mode-name)
            (or (string-equal (buffer-name) "Makefile")
@@ -168,14 +172,14 @@
 ;; (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;;multi-web-mode
-(require 'multi-web-mode)
-(setq mweb-default-major-mode 'html-mode)
-(setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-                  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
-                  (jsx-mode "<script +\\(type=\"text/jsx\"\\|language=\"jsx\"\\)[^>]*>" "</script>")
-                  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
-(setq mweb-filename-extensions '("php" "htm" "html" "eex" "ctp" "phtml" "php4" "php5"))
-(multi-web-global-mode 1)
+;; (require 'multi-web-mode)
+;; (setq mweb-default-major-mode 'html-mode)
+;; (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+                  ;; (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+                  ;; (jsx-mode "<script +\\(type=\"text/jsx\"\\|language=\"jsx\"\\)[^>]*>" "</script>")
+                  ;; (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+;; (setq mweb-filename-extensions '("php" "htm" "html" "eex" "ctp" "phtml" "php4" "php5"))
+;; (multi-web-global-mode 1)
 
 ;;elixir-mode and erlang-mode
 (add-hook 'elixir-mode-hook 'alchemist-mode)

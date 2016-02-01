@@ -116,23 +116,23 @@
    `(font-latex-verbatim-face ((t (:foreground ,orange))))
    `(font-latex-warning-face ((t (:foreground ,red))))
 
-   ;;flycheck
-
-   '(flycheck-error ((t (:foreground "#DE1E1B" :weight bold))))
-   '(flycheck-warning ((t (:foreground "gold" :weight bold))))
-
    ;;company
 
    `(company-tooltip ((t (:background ,background :foreground ,foreground))))
    `(company-scrollbar-bg ((t (:background ,background))))
    `(company-tooltip-selection ((t (:background ,selection))))
-   `(company-scrollbar-fg ((t (:background ,background)))))
+   `(company-scrollbar-fg ((t (:background ,background))))
 
   ;;flycheck
 
-   '(flycheck-error ((t (:foreground "red" :weight bold))))
-   '(flycheck-warning ((t (:foreground "gold" :weight bold))))
+   `(flycheck-error ((t (:foreground "#B81A18" :weight bold))))
+   `(flycheck-warning ((t (:foreground "gold" :weight bold))))
 
+   ;;avy
+
+   `(avy-lead-face ((t (:background ,red :foreground ,foreground))))
+   `(avy-lead-face-0 ((t (:background ,red :foreground ,foreground))))
+   `(avy-lead-face-1 ((t (:background ,red :foreground ,foreground)))))
 
   (custom-theme-set-variables
    'tomorrow-night
