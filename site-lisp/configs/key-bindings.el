@@ -152,8 +152,8 @@
 ;;hook functions
 (add-hook 'python-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-d") 'anaconda-mode-goto)
-            (local-set-key (kbd "C-f") 'anaconda-nav-pop-marker)
+            (local-set-key (kbd "C-d") 'anaconda-mode-find-definitions)
+            (local-set-key (kbd "C-f") 'anaconda-mode-go-back)
             (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
             (local-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
             (local-set-key (kbd "C-c C-p") 'projectile-find-file)

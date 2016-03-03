@@ -5,3 +5,4 @@ ac-comphist.dat
 *.elc
 projectile.cache
 projectile-bookmarks.eld
+anaconda-mode/

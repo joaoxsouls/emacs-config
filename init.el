@@ -41,6 +41,7 @@
 
 ;;undo-tree-mode
 (global-undo-tree-mode)
+(setq undo-tree-visualizer-timestamps t)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq flycheck-highlighting-mode 'lines)
@@ -191,3 +192,39 @@
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
+
+
+(defvar projectile-mode-line
+  '(:propertize
+    (:eval (when (ignore-errors (projectile-project-root))
+             (concat " " (projectile-project-name))))
+    face font-lock-constant-face)
+  "Mode line format for Projectile.")
+(put 'projectile-mode-line 'risky-local-variable t)
+
+(defvar vc-mode-line
+  '(" " (:propertize
+         ;; Strip the backend name from the VC status information
+         (:eval (let ((backend (symbol-name (vc-backend (buffer-file-name)))))
+                  (substring vc-mode (+ (length backend) 2))))
+         face font-lock-variable-name-face))
+  "Mode line format for VC Mode.")
+(put 'vc-mode-line 'risky-local-variable t)
+
+(setq-default mode-line-format
+              '("%e" mode-line-front-space
+                ;; Standard info about the current buffer
+                mode-line-mule-info
+                mode-line-client
+                mode-line-modified
+                mode-line-remote
+                mode-line-frame-identification
+                mode-line-buffer-identification " " mode-line-position
+                ;; Some specific information about the current buffer:
+                projectile-mode-line ; Project information
+                (vc-mode vc-mode-line)
+                (flycheck-mode flycheck-mode-line) ; Flycheck status
+                (multiple-cursors-mode mc/mode-line) ; Number of cursors
+                " "
+                mode-line-misc-info
+                " " mode-line-end-spaces))
