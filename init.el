@@ -60,6 +60,17 @@
   :config
   (editorconfig-mode 1))
 
+(defun editorconfig-format-buffer()
+  "format buffer according to .editorconfig indent_style and indent_width"
+  (interactive)
+  (if (string= (gethash 'indent_style editorconfig-properties-hash) "tab")
+      (tabify (point-min) (point-max)))
+  (if (string= (gethash 'indent_style editorconfig-properties-hash) "space")
+      (untabify (point-min) (point-max)))
+  (indent-region (point-min) (point-max)))
+
+(add-hook 'before-save-hook 'editorconfig-format-buffer)
+
 ;;ido
 (ido-vertical-mode 1)
 (ido-mode 1)
