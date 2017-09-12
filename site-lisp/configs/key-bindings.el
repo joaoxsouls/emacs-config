@@ -1,34 +1,6 @@
-;;new line after and before the current
-(defun open-line-below ()
-  (interactive)
-  (save-excursion
-    (end-of-line)
-    (newline)
-    (indent-for-tab-command)))
-
-(defun open-line-above ()
-
-  (interactive)
-  (save-excursion
-    (forward-line -1)
-    (end-of-line)
-    (newline)
-    (indent-for-tab-command)))
-
-(global-set-key (kbd "C-c C-b") 'open-line-below)
-(global-set-key (kbd "C-c C-a") 'open-line-above)
-
-(defun indent-or-complete ()
-  (interactive)
-  (if (looking-at "\\_>")
-      (company-complete)
-    (indent-according-to-mode)))
-
-(global-set-key (kbd "M-TAB") 'company-manual-begin)
-(global-set-key (kbd "TAB") 'indent-or-complete)
 
 ;;rename files
-(defun rename-current-buffer-file ()
+(defun rf ()
   "Renames current buffer and file it is visiting."
   (interactive)
   (let ((name (buffer-name))
@@ -45,10 +17,10 @@
           (message "File '%s' successfully renamed to '%s'"
                    name (file-name-nondirectory new-name)))))))
 
-(global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
+(global-set-key (kbd "C-x C-r") 'rf)
 
 ;;delete files
-(defun delete-current-buffer-file ()
+(defun df ()
   "Removes file connected to current buffer and kills buffer."
   (interactive)
   (let ((filename (buffer-file-name))
@@ -61,60 +33,23 @@
         (kill-buffer buffer)
         (message "File '%s' successfully removed" filename)))))
 
-(global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
+(global-set-key (kbd "C-x C-k") 'df)
 
-(defun comment-or-uncomment-region-or-line ()
+(defun cc ()
   "comment or uncomment a region if selected, otherwise the whole line"
   (interactive)
   (save-excursion
     (if (region-active-p)
         (comment-or-uncomment-region (region-beginning) (region-end))
       (comment-or-uncomment-region (line-beginning-position) (line-end-position)))))
-(global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
+(global-set-key (kbd "C-c C-c") 'cc)
 
-;;copy region or line
-(defun copy-region-or-whole-line (arg)
-  (interactive "p")
-  (save-excursion)
-  (if (region-active-p)
-      (kill-ring-save (region-beginning) (region-end))
-    (kill-ring-save (line-beginning-position) (line-end-position))))
-(global-set-key (kbd "M-w") 'copy-region-or-whole-line)
-
-;;kill region or line
-(defun kill-region-or-line (&optional arg)
-  (interactive "p")
-  (save-excursion
-    (if (region-active-p)
-        (kill-region (region-beginning) (region-end))
-      (kill-region (line-beginning-position) (line-end-position)))))
-(global-set-key (kbd "C-w") 'kill-region-or-line)
-
-(defun delete-region-or-whole-line(&optional arg)
-  (interactive "p")
-  (save-excursion
-    (if (region-active-p)
-        (delete-region (region-beginning) (region-end))
-      (delete-region (line-beginning-position) (line-end-position)))))
-(global-set-key (kbd "C-k") 'delete-region-or-whole-line)
-
-(defun delete-whole-line()
-  (interactive)
-  (delete-region (line-beginning-position) (line-beginning-position 2)))
-(global-set-key (kbd "M-k") 'delete-whole-line)
-
-;;clean-up and ident
-(defun cleanup-buffer ()
-  (interactive)
-  (cleanup-buffer-safe)
-  (indent-region (point-min) (point-max)))
-
-(defun indent-buffer ()
+(defun ib ()
   "Indent the currently visited buffer."
   (interactive)
   (indent-region (point-min) (point-max)))
 
-(defun indent-region-or-buffer ()
+(defun irb ()
   "Indent a region if selected, otherwise the whole buffer."
   (interactive)
   (save-excursion
@@ -123,7 +58,7 @@
           (indent-region (region-beginning) (region-end))
           (message "Indented selected region."))
       (progn
-        (indent-buffer)
+        (ib)
         (message "Indented buffer.")))))
 
 (global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
@@ -147,6 +82,12 @@
   (interactive)
   (rgrep (grep-read-regexp) "*.*" (simp-project-root))
   )
+
+;;eclim-mode hooks
+(add-hook 'eclim-mode-map-hook
+          (lambda ()
+            (local-set-key (kbd "C-M-i") 'company-emacs-eclim)
+            ))
 
 ;;python-mode keys
 ;;hook functions
@@ -183,6 +124,29 @@
             (local-set-key (kbd "C-d") 'alchemist-goto-definition-at-point)
             (local-set-key (kbd "C-f") 'alchemist-goto-jump-back)
             ))
+
+(add-hook 'magit-mode-hook
+          (lambda ()
+            (local-set-key (kbd "r") 'magit-refresh)
+            (local-set-key (kbd "<down>") 'magit-section-forward)
+            (local-set-key (kbd "<up>") 'magit-section-backward)
+            ))
+
+;;ensime keys
+(add-hook 'ensime-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-d") 'ensime-edit-definition)
+            (local-set-key (kbd "C-f") 'ensime-pop-find-definition-stack)
+            (local-set-key (kbd "C-c C-p") 'projectile-find-file)
+            (local-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
+            ))
+
+;;java-mode
+(add-hook 'java-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-c C-p") 'projectile-find-file)
+            ))
+
 ;;GLOBAL KEYS
 
 (global-set-key (kbd "M-n") 'backward-paragraph)

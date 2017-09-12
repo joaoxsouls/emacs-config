@@ -1,5 +1,6 @@
 (require-package 'flx-ido)
 (require-package 'smex)
+(require-package 'evil)
 (require-package 'yasnippet)
 (require-package 'company)
 (require-package 'company-anaconda)
@@ -35,5 +36,8 @@
 (require-package 'magit)
 (require-package 'elixir-yasnippets)
 (require-package 'racer)
+(require-package 'use-package)
+(require-package 'highlight-symbol)
+(require-package 'editorconfig)
 
 (provide 'packages)

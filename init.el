@@ -1,6 +1,13 @@
 ;;----------------------------------------------------------------------------
 ;; Bootstrapp configs
 ;;----------------------------------------------------------------------------
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)      
+
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
 (add-to-list 'custom-theme-load-path "~/.emacs.d/site-lisp/themes")
@@ -13,6 +20,7 @@
 (require 'init-utils)
 (require 'init-site-lisp)
 (require 'init-elpa)
+(require 'evil-terminal-cursor-changer)
 (require 'key-bindings)
 (require 'packages)
 (require 'visual)
@@ -22,14 +30,35 @@
 ;; Global modes configs
 ;;----------------------------------------------------------------------------
 
+;;evil-mode
+(use-package evil
+  :init
+  (setq foo-variable t)
+  :config
+  (unless (display-graphic-p)
+    (evil-terminal-cursor-changer-activate))
+  (define-key evil-motion-state-map (kbd "SPC") #'evil-avy-goto-word-or-subword-1)
+  (evil-mode 1))
 
 ;;company
-(setq company-dabbrev-code-ignore-case t)
-(setq company-dabbrev-downcase nil)
-(setq company-idle-delay 0.5)
-(add-hook 'after-init-hook 'global-company-mode)
-(set (make-local-variable 'company-backends) '(company-tern))
-(add-to-list 'company-backends 'company-yasnippet)
+(use-package company
+  :init
+  (setq company-dabbrev-code-ignore-case t)
+  (setq company-dabbrev-downcase nil)
+  (setq company-idle-delay 0.5)
+  (setq company-dabbrev-code-ignore-case t)
+  (setq company-dabbrev-downcase nil)
+  (setq company-idle-delay 0.5)
+  (global-company-mode t)
+  :config
+  (add-to-list 'company-backends 'company-yasnippet 'company-emacs-eclim)
+  )
+
+;;editorconfig
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
 
 ;;ido
 (ido-vertical-mode 1)
@@ -45,15 +74,11 @@
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq flycheck-highlighting-mode 'lines)
-(setq flycheck-rust-library-path '("../target/deps"))
 (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
 
 ;;pbcopy
 (require 'pbcopy)
 (turn-on-pbcopy)
-
-;;no more shift select
-(setq shift-select-mode t)
 
 ;;yasnippet
 ;; (add-to-list 'load-path (file-expand-wildcards (concat emacs-directory "elpa/yasnippet-*/snippets")))
@@ -115,6 +140,8 @@
 ;;avy-mode
 (setq avy-keys (number-sequence ?a ?z))
 
+;;hight-symbol-mode
+(add-hook 'prog-mode-hook 'highlight-symbol-mode)
 
 (defun buffer-is-tabbed()
   (if (and (stringp mode-name)
@@ -122,22 +149,17 @@
                (string-equal mode-name "Makefile")
                (string-equal mode-name "Go")
                (string-equal mode-name "BSDmakefile")))
-  t))
+      t))
 
 ;;delete whitespaces
-(defun cleanup-buffer-safe ()
-  (interactive)
-  (if (not (buffer-is-tabbed))
-      (untabify (point-min) (point-max)))
-  (delete-trailing-whitespace)
-  (set-buffer-file-coding-system 'utf-8))
+;; (defun cleanup-buffer-safe ()
+;;   (interactive)
+;;   (if (not (buffer-is-tabbed))
+;;       (untabify (point-min) (point-max)))
+;;   (delete-trailing-whitespace)
+;;   (set-buffer-file-coding-system 'utf-8))
 
-(add-hook 'before-save-hook 'cleanup-buffer-safe)
-
-;;tabs instead of spaces except makefiles and go
-(add-hook 'makefile-mode-hook '(lambda ()
-                                 (setq indent-tabs-mode t)))
-(setq-default indent-tabs-mode nil)
+;; (add-hook 'before-save-hook 'cleanup-buffer-safe)
 
 ;;popwin mode
 (require 'popwin)
@@ -155,8 +177,8 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-hook 'js-mode-hook (lambda ()
-  (set (make-local-variable 'company-backends) '(company-tern))
-  (company-mode)))
+                          (set (make-local-variable 'company-backends) '(company-tern))
+                          (company-mode)))
 
 ;;sass, css
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
@@ -167,8 +189,8 @@
 (setq gofmt-command "goimports")
 (add-to-list 'load-path "~/.go/misc/emacs/")
 (add-hook 'go-mode-hook (lambda ()
-  (set (make-local-variable 'company-backends) '(company-go))
-  (company-mode)))
+                          (set (make-local-variable 'company-backends) '(company-go))
+                          (company-mode)))
 ;; (require 'go-mode-load)
 ;; (add-hook 'before-save-hook 'gofmt-before-save)
 
@@ -176,9 +198,9 @@
 ;; (require 'multi-web-mode)
 ;; (setq mweb-default-major-mode 'html-mode)
 ;; (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-                  ;; (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
-                  ;; (jsx-mode "<script +\\(type=\"text/jsx\"\\|language=\"jsx\"\\)[^>]*>" "</script>")
-                  ;; (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+;; (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+;; (jsx-mode "<script +\\(type=\"text/jsx\"\\|language=\"jsx\"\\)[^>]*>" "</script>")
+;; (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
 ;; (setq mweb-filename-extensions '("php" "htm" "html" "eex" "ctp" "phtml" "php4" "php5"))
 ;; (multi-web-global-mode 1)
 
