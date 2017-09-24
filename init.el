@@ -59,16 +59,6 @@
   :ensure t
   :config
   (editorconfig-mode 1))
-
-(defun editorconfig-format-buffer()
-  "format buffer according to .editorconfig indent_style and indent_width"
-  (interactive)
-  (if (string= (gethash 'indent_style editorconfig-properties-hash) "tab")
-      (tabify (point-min) (point-max)))
-  (if (string= (gethash 'indent_style editorconfig-properties-hash) "space")
-      (untabify (point-min) (point-max)))
-  (indent-region (point-min) (point-max)))
-
 (add-hook 'before-save-hook 'editorconfig-format-buffer)
 
 ;;ido
@@ -226,6 +216,13 @@
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
 
+;;eclim eclim
+(require 'eclim)
+(setq eclimd-autostart t)
+(add-hook 'java-mode-hook (lambda () (eclim-mode t)))
+(setq help-at-pt-display-when-idle t)
+(setq help-at-pt-timer-delay 0.1)
+(help-at-pt-set-timer)
 
 (defvar projectile-mode-line
   '(:propertize
