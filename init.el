@@ -38,7 +38,8 @@
   (unless (display-graphic-p)
     (evil-terminal-cursor-changer-activate))
   (define-key evil-motion-state-map (kbd "SPC") #'evil-avy-goto-word-or-subword-1)
-  (evil-mode 1))
+  (evil-mode 1)
+  (evil-goggles-mode))
 
 ;;company
 (use-package company
@@ -59,7 +60,7 @@
   :ensure t
   :config
   (editorconfig-mode 1))
-(add-hook 'before-save-hook 'editorconfig-format-buffer)
+;;(add-hook 'before-save-hook 'editorconfig-format-buffer)
 
 ;;ido
 (ido-vertical-mode 1)
