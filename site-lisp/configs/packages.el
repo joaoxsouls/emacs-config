@@ -1,6 +1,7 @@
 (require-package 'flx-ido)
 (require-package 'smex)
 (require-package 'evil)
+(require-package 'evil-goggles)
 (require-package 'yasnippet)
 (require-package 'company)
 (require-package 'company-anaconda)
@@ -39,5 +40,6 @@
 (require-package 'use-package)
 (require-package 'highlight-symbol)
 (require-package 'editorconfig)
+(require-package 'eclim)
 
 (provide 'packages)
