@@ -75,80 +75,6 @@
 
 (global-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
 
-;;rgrep project
-(eval-after-load "grep"
-  '(grep-compute-defaults))
-(defun rgrep-project()
-  (interactive)
-  (rgrep (grep-read-regexp) "*.*" (simp-project-root))
-  )
-
-;;eclim-mode hooks
-(add-hook 'eclim-mode-map-hook
-          (lambda ()
-            (local-set-key (kbd "C-M-i") 'company-emacs-eclim)
-            ))
-
-;;python-mode keys
-;;hook functions
-(add-hook 'python-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-d") 'anaconda-mode-find-definitions)
-            (local-set-key (kbd "C-f") 'anaconda-mode-go-back)
-            (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
-            (local-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
-            (local-set-key (kbd "C-c C-p") 'projectile-find-file)
-            ))
-
-;;html-mode hooks
-(add-hook 'html-mode-hook
-          (lambda ()
-            (local-set-key (kbd "s-b") 'sgml-skip-tag-backward)
-            (local-set-key (kbd "s-e") 'sgml-skip-tag-forward)
-            (local-set-key (kbd "s-d") 'sgml-delete-tag)
-            (local-set-key (kbd "C-c <right>") 'next-multiframe-window)
-            (local-set-key (kbd "C-c <left>") 'previous-multiframe-window)
-            (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
-            ))
-
-
-;;elixir-mode and erlang-mode hooks
-(add-hook 'elixir-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-d") 'alchemist-goto-definition-at-point)
-            (local-set-key (kbd "C-f") 'alchemist-goto-jump-back)
-            ))
-
-(add-hook 'erlang-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-d") 'alchemist-goto-definition-at-point)
-            (local-set-key (kbd "C-f") 'alchemist-goto-jump-back)
-            ))
-
-(add-hook 'magit-mode-hook
-          (lambda ()
-            (local-set-key (kbd "r") 'magit-refresh)
-            (local-set-key (kbd "<down>") 'magit-section-forward)
-            (local-set-key (kbd "<up>") 'magit-section-backward)
-            ))
-
-;;ensime keys
-(add-hook 'ensime-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-d") 'ensime-edit-definition)
-            (local-set-key (kbd "C-f") 'ensime-pop-find-definition-stack)
-            (local-set-key (kbd "C-c C-p") 'projectile-find-file)
-            (local-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
-            ))
-
-;;java-mode
-(add-hook 'java-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c C-p") 'projectile-find-file)
-            ))
-
-;;GLOBAL KEYS
-
 (global-set-key (kbd "M-n") 'backward-paragraph)
 
 (global-set-key (kbd "M-<up>") 'backward-paragraph)
@@ -165,11 +91,7 @@
 
 (global-set-key (kbd "C-<down>") 'end-of-buffer)
 
-(global-set-key (kbd "C-z") 'undo-only)
-
 (global-set-key (kbd "C-x C-f") 'ido-find-file)
-
-(global-set-key (kbd "C-c C-p") 'projectile-find-file)
 
 (global-set-key (kbd "C-c <right>") 'next-multiframe-window)
 
@@ -185,41 +107,12 @@
 
 (global-set-key (kbd "s-r") 'replace-string)
 
-(global-set-key (kbd "s-u") 'ido-find-file)
-
 (global-set-key (kbd "C-x b") 'ido-switch-buffer)
-
-(global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
 
 (global-set-key (kbd "C-M-<right>") 'forward-sexp)
 
 (global-set-key (kbd "C-M-<left>") 'backward-sexp)
 
-(global-set-key (kbd "s-+") 'text-scale-increase)
-
-(global-set-key (kbd "s--") 'text-scale-decrease)
-
-(global-set-key (kbd "M-x") 'smex)
-
-(global-set-key (kbd "M-.") 'mc/mark-all-like-this)
-
-(global-set-key (kbd "M-SPC") 'avy-goto-line)
-
 (global-set-key (kbd "<return>") 'newline-and-indent)
 
-(global-set-key (kbd "C-b") 'set-mark-command)
-
-(global-set-key (kbd "C-@") 'avy-goto-word-or-subword-1)
-
-(global-set-key (kbd "C-SPC") 'avy-goto-word-or-subword-1)
-
-(global-set-key (kbd "M-1") 'er/contract-region)
-
-(global-set-key (kbd "M-2") 'er/expand-region)
-
-(global-set-key (kbd "C-n") 'mc/mark-next-like-this)
-
-(global-set-key (kbd "C-p") 'mc/mark-previous-like-this)
-
-(global-set-key (kbd "M-d") 'comment-or-uncomment-region-or-line)
 (provide 'key-bindings)
