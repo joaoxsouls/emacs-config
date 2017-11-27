@@ -29,10 +29,6 @@
   (projectile-global-mode t)
   :diminish projectile-mode)
 
-(use-package helm-projectile
-  :after projectile
-  :bind*
-  ("C-c C-p" . helm-projectile))
 (use-package helm
   :init
   (setq helm-M-x-fuzzy-match t)
@@ -45,6 +41,11 @@
    ("C-x b" . helm-mini)
    ("C-x C-b" . helm-mini)
    ("C-x C-f" . helm-find-files)))
+(use-package helm-projectile
+  :after projectile
+  :bind*
+  ("C-c C-p" . helm-projectile)
+  ("C-c p s s " . helm-projectile-ack))
 
 (use-package undo-tree
   :defer t
@@ -60,6 +61,12 @@
   :bind*
   (("M-1" . er/contract-region)
   ("M-2" . er/expand-region)))
+
+
+(use-package crux
+  :bind
+  ("C-x C-r" . crux-rename-file-and-buffer)
+  ("C-x C-k" . crux-delete-file-and-buffer))
 
 ;;----------------------------------------------------------------------------
 ;;LANGUAGES
