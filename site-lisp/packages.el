@@ -1,6 +1,5 @@
 (setq use-package-always-ensure t)
 
-(use-package evil-goggles)
 (use-package evil
   :init
   (setq foo-variable t)
@@ -11,6 +10,17 @@
   (define-key evil-motion-state-map (kbd "SPC") #'evil-avy-goto-word-or-subword-1)
   (evil-mode 1)
   (evil-goggles-mode))
+(use-package evil-matchit
+  :config
+  (global-evil-matchit-mode t))
+(use-package evil-goggles)
+(use-package evil-nerd-commenter
+  :bind
+  ("C-c C-c" . evilnc-comment-or-uncomment-lines)
+  :config
+  ;; (define-key evil-normal-state-map "c" 'evil-change)
+  ;; (define-key evil-normal-state-map "ci" 'evilnc-comment-or-uncomment-lines)
+  (evil-ex-define-cmd "co[mment]" 'evilnc-comment-or-uncomment-lines))
 
 (use-package editorconfig
   :ensure t
@@ -60,7 +70,7 @@
 (use-package expand-region
   :bind*
   (("M-1" . er/contract-region)
-  ("M-2" . er/expand-region)))
+   ("M-2" . er/expand-region)))
 
 
 (use-package crux
