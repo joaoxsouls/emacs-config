@@ -27,25 +27,24 @@
 (use-package projectile
   :config
   (projectile-global-mode t)
-  :diminish projectile-mode
+  :diminish projectile-mode)
+
+(use-package helm-projectile
+  :after projectile
   :bind*
-  ("C-c C-p" . projectile-find-file))
-
-;;ido
-(use-package ido-vertical-mode)
-(use-package flx-ido)
-(use-package ido
+  ("C-c C-p" . helm-projectile))
+(use-package helm
   :init
-  (flx-ido-mode)
-  (ido-vertical-mode)
-  (ido-everywhere)
-  (setq ido-enable-flex-matching t)
-  (setq ido-use-faces nil)
-  :config
-  (ido-mode))
-
-(use-package smex
-  :bind ("M-x" . smex))
+  (setq helm-M-x-fuzzy-match t)
+  (setq helm-buffers-fuzzy-matching t)
+  (setq helm-recentf-fuzzy-match t)
+  (setq helm-completion-in-region-fuzzy-match t)
+  (helm-mode)
+  :bind
+  (("M-x" . helm-M-x)
+   ("C-x b" . helm-mini)
+   ("C-x C-b" . helm-mini)
+   ("C-x C-f" . helm-find-files)))
 
 (use-package undo-tree
   :defer t
@@ -65,6 +64,14 @@
 ;;----------------------------------------------------------------------------
 ;;LANGUAGES
 ;;----------------------------------------------------------------------------
+(use-package flycheck
+  :diminish flycheck-mode
+  :init
+  (setq flycheck-highlighting-mode 'lines)
+  :config
+  (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point)
+  (global-flycheck-mode))
+
 (use-package company
   :diminish company-mode
   :init
@@ -126,21 +133,19 @@
   :after rust
   :bind (("C-c C-f" . rustfmt-format-buffer)))
 
-(use-package flycheck
-  :diminish flycheck-mode
-  :init
-  (setq flycheck-highlighting-mode 'lines)
-  :config
-  (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point)
-  (global-flycheck-mode))
-
 (use-package eclim
   :init
-  (setq eclimd-autostart t)
+  (help-at-pt-set-timer)
   (setq help-at-pt-display-when-idle t)
   (setq help-at-pt-timer-delay 0.1)
+  (setq auto-save-default nil)
+  (setq eclim-auto-save nil)
   :config
-  (add-hook 'java-mode-hook (lambda () (eclim-mode t)))
-  (help-at-pt-set-timer))
+  (add-hook 'java-mode-hook (lambda () (eclim-mode t) (start-eclimd "~/workspace"))))
+
+(use-package company-emacs-eclim
+  :after eclim
+  :config
+  (company-emacs-eclim-setup))
 
 (provide 'packages)

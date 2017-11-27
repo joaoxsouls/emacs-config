@@ -31,7 +31,7 @@
    'tomorrow-night
 
    ;; Built-in stuff (Emacs 23)
-   `(default ((t (:background ,background :foreground ,foreground))))
+   ;; `(default ((t (:background ,background :foreground ,foreground))))
    `(error ((t (:foreground ,red))))
    `(escape-glyph ((t (:foreground ,aqua))))
    `(fringe ((t (:background ,current-line))))
@@ -132,7 +132,11 @@
 
    `(avy-lead-face ((t (:background ,red :foreground ,foreground))))
    `(avy-lead-face-0 ((t (:background ,red :foreground ,foreground))))
-   `(avy-lead-face-1 ((t (:background ,red :foreground ,foreground)))))
+   `(avy-lead-face-1 ((t (:background ,red :foreground ,foreground))))
+
+  ;;helm
+  `(helm-selection ((t (:background ,purple :foreground, foreground))))
+  `(helm-match ((t (:foreground ,yellow :weight bold)))))
 
   (custom-theme-set-variables
    'tomorrow-night

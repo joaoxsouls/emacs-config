@@ -65,16 +65,6 @@
 
 (global-set-key (kbd "C-c n") 'cleanup-buffer)
 
-;;ido recentfiles
-(defun recentf-ido-find-file ()
-  "Find a recent file using ido."
-  (interactive)
-  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
-    (when file
-      (find-file file))))
-
-(global-set-key (kbd "C-c C-r") 'recentf-ido-find-file)
-
 (global-set-key (kbd "M-n") 'backward-paragraph)
 
 (global-set-key (kbd "M-<up>") 'backward-paragraph)
@@ -91,8 +81,6 @@
 
 (global-set-key (kbd "C-<down>") 'end-of-buffer)
 
-(global-set-key (kbd "C-x C-f") 'ido-find-file)
-
 (global-set-key (kbd "C-c <right>") 'next-multiframe-window)
 
 (global-set-key (kbd "C-c <left>") 'previous-multiframe-window)
@@ -106,8 +94,6 @@
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 
 (global-set-key (kbd "s-r") 'replace-string)
-
-(global-set-key (kbd "C-x b") 'ido-switch-buffer)
 
 (global-set-key (kbd "C-M-<right>") 'forward-sexp)
 
