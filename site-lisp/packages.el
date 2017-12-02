@@ -17,7 +17,7 @@
 (use-package evil-nerd-commenter
   :bind
   ("C-c C-c" . evilnc-comment-or-uncomment-lines)
-  :config
+  :init
   ;; (define-key evil-normal-state-map "c" 'evil-change)
   ;; (define-key evil-normal-state-map "ci" 'evilnc-comment-or-uncomment-lines)
   (evil-ex-define-cmd "co[mment]" 'evilnc-comment-or-uncomment-lines))
@@ -40,6 +40,7 @@
   :diminish projectile-mode)
 
 (use-package helm
+  :diminish helm-mode
   :init
   (setq helm-M-x-fuzzy-match t)
   (setq helm-buffers-fuzzy-matching t)
@@ -141,9 +142,8 @@
   (add-hook 'rust-mode-hook #'racer-mode))
 
 (use-package flycheck-rust
-  :after (rust-mode flycheck-mode)
   :config
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+  (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
 
 (use-package rustfmt
   :disabled t
@@ -155,7 +155,6 @@
   (help-at-pt-set-timer)
   (setq help-at-pt-display-when-idle t)
   (setq help-at-pt-timer-delay 0.1)
-  (setq auto-save-default nil)
   (setq eclim-auto-save nil)
   :config
   (add-hook 'java-mode-hook (lambda () (eclim-mode t) (start-eclimd "~/workspace"))))

@@ -5,6 +5,7 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 
@@ -28,21 +29,21 @@
 ;; Global modes configs
 ;;----------------------------------------------------------------------------
 
-(setq uniquify-buffer-name-style 'forward)
-(setq uniquify-separator "/")
-(setq uniquify-after-kill-buffer-p t)
-(setq uniquify-ignore-buffers-re "^\\*")
+;;scroll
+(setq scroll-step 1)
+(setq scroll-conservatively 1)
+(setq auto-window-vscroll nil)
+
+;;always open windows horizontally
+(setq split-height-threshold 0)
+(setq split-width-threshold nil)
 
 ;;auto pair brackets and match them
 (electric-pair-mode t)
 (show-paren-mode 1)
 
-;;disable backup files
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
-;;disable auto save
+;;disable auto-save and backup files
+(setq make-backup-files nil)
 (setq auto-save-default nil)
 
 ;;recent files

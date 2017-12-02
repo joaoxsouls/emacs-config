@@ -31,7 +31,7 @@
    'tomorrow-night
 
    ;; Built-in stuff (Emacs 23)
-   ;; `(default ((t (:background ,background :foreground ,foreground))))
+   `(default ((t (:background nil :foreground ,foreground))))
    `(error ((t (:foreground ,red))))
    `(escape-glyph ((t (:foreground ,aqua))))
    `(fringe ((t (:background ,current-line))))
@@ -64,7 +64,7 @@
    `(hl-line ((t (:background ,current-line))))
 
    ;; linum-mode
-   `(linum ((t (:background ,background :foreground ,foreground))))
+   `(linum ((t (:foreground ,foreground))))
 
    ;; org-mode
    `(org-date ((t (:foreground ,purple))))
@@ -116,10 +116,16 @@
    `(font-latex-verbatim-face ((t (:foreground ,orange))))
    `(font-latex-warning-face ((t (:foreground ,red))))
 
-   ;;company
+   ;; web-mode
+   `(web-mode-builtin-face ((t (:inherit ,font-lock-builtin-face))))
+   `(web-mode-comment-face ((t (:inherit ,font-lock-comment-face))))
+   `(web-mode-constant-face ((t (:inherit ,font-lock-constant-face))))
+   `(web-mode-html-tag-face ((t (:foreground ,orange))))
+   `(web-mode-html-tag-bracket-face ((t (:foreground ,foreground))))
 
-   `(company-tooltip ((t (:background ,background :foreground ,foreground))))
-   `(company-scrollbar-bg ((t (:background ,background))))
+   ;;company
+   `(company-tooltip ((t (:foreground ,foreground))))
+   `(company-tooltip-common ((t (:foreground ,red))))
    `(company-tooltip-selection ((t (:background ,selection))))
    `(company-scrollbar-fg ((t (:background ,background))))
 
