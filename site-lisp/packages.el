@@ -15,7 +15,7 @@
   (global-evil-matchit-mode t))
 (use-package evil-goggles)
 (use-package evil-nerd-commenter
-  :bind
+  :bind*
   ("C-c C-c" . evilnc-comment-or-uncomment-lines)
   :init
   ;; (define-key evil-normal-state-map "c" 'evil-change)

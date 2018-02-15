@@ -17,7 +17,7 @@
       (current-line "#282a2e")
       (selection "#373b41")
       (foreground "#c5c8c6")
-      (comment "#666966")
+      (gray "#666966")
       (cursor "#aeafad")
       (red "#F92672")
       (orange "#de935f")
@@ -43,16 +43,16 @@
    `(mode-line-inactive ((t (:background ,current-line :foreground ,foreground))))
    `(region ((t (:background ,selection))))
    `(secondary-selection ((t (:background ,blue))))
-   `(shadow ((t (:foreground ,comment))))
+   `(shadow ((t (:foreground ,gray))))
    `(success ((t (:foreground ,green))))
    `(trailing-whitespace ((t (:background ,red))))
    `(warning ((t (:foreground ,orange))))
 
    ;; Font-lock stuff
    `(font-lock-builtin-face ((t (:foreground ,aqua))))
-   `(font-lock-comment-face ((t (:foreground ,comment))))
+   `(font-lock-comment-face ((t (:foreground ,gray))))
    `(font-lock-constant-face ((t (:foreground ,aqua))))
-   `(font-lock-doc-string-face ((t (:foreground ,comment))))
+   `(font-lock-doc-string-face ((t (:foreground ,gray))))
    `(font-lock-function-name-face ((t (:foreground ,blue))))
    `(font-lock-keyword-face ((t (:foreground ,purple))))
    `(font-lock-string-face ((t (:foreground ,green))))
@@ -79,14 +79,14 @@
 
    ;; whitespace-mode
    `(whitespace-empty ((t (:background ,yellow :foreground ,red))))
-   `(whitespace-hspace ((t (:background ,selection :foreground ,comment))))
+   `(whitespace-hspace ((t (:background ,selection :foreground ,gray))))
    `(whitespace-indentation ((t (:background ,yellow :foreground ,red))))
    `(whitespace-line ((t (:background ,current-line :foreground ,purple))))
-   `(whitespace-newline ((t (:foreground ,comment))))
-   `(whitespace-space ((t (:background ,current-line :foreground ,comment))))
+   `(whitespace-newline ((t (:foreground ,gray))))
+   `(whitespace-space ((t (:background ,current-line :foreground ,gray))))
    `(whitespace-space-after-tab ((t (:background ,yellow :foreground ,red))))
    `(whitespace-space-before-tab ((t (:background ,orange :foreground ,red))))
-   `(whitespace-tab ((t (:background ,selection :foreground ,comment))))
+   `(whitespace-tab ((t (:background ,selection :foreground ,gray))))
    `(whitespace-trailing ((t (:background ,red :foreground ,yellow))))
 
    ;; rainbow-delimiters
@@ -97,7 +97,7 @@
    `(rainbow-delimiters-depth-5-face ((t (:foreground ,yellow))))
    `(rainbow-delimiters-depth-6-face ((t (:foreground ,orange))))
    `(rainbow-delimiters-depth-7-face ((t (:foreground ,red))))
-   `(rainbow-delimiters-depth-8-face ((t (:foreground ,comment))))
+   `(rainbow-delimiters-depth-8-face ((t (:foreground ,gray))))
    `(rainbow-delimiters-depth-9-face ((t (:foreground ,foreground))))
 
    ;; auctex
@@ -124,10 +124,13 @@
    `(web-mode-html-tag-bracket-face ((t (:foreground ,foreground))))
 
    ;;company
-   `(company-tooltip ((t (:foreground ,foreground))))
+   `(company-tooltip ((t (:foreground ,orange))))
+   `(company-tooltip-annotation ((t (:foreground ,cursor))))
    `(company-tooltip-common ((t (:foreground ,red))))
+   `(company-tooltip-search ((t (:foreground ,yellow))))
    `(company-tooltip-selection ((t (:background ,selection))))
-   `(company-scrollbar-fg ((t (:background ,background))))
+   `(company-scrollbar-fg ((t (:background ,red))))
+   `(company-scrollbar-bg ((t (:background ,background))))
 
   ;;flycheck
 
